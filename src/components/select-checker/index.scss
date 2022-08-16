@@ -1,0 +1,106 @@
+.select-checker {
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 320px;
+
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 8px;
+
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+
+    cursor: pointer;
+}
+
+.select-checker .btn-text {
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.select-checker.open ~ .arrow-dwn {
+    transform: rotate(-180deg);
+}
+
+.select-checker .arrow-dwn {
+    display: flex;
+    height: 21px;
+    width: 21px;
+    color: #fff;
+    font-size: 14px;
+
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.3;
+}
+
+.select-checker.open ~ .list-items {
+    display: inline-block;
+}
+
+.list-items {
+    display: none;
+    position: relative;
+    margin-top: 15px;
+    border-radius: 8px;
+    padding: 16px;
+    background: #fff;
+    color: gray;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    width: 320px;
+
+    user-select: none;
+}
+
+.list-items .item {
+    display: flex;
+    align-items: center;
+    list-style: none;
+
+    // min-height: 50px;
+    cursor: pointer;
+    user-select: none;
+    padding: 0 15px;
+    border-radius: 8px;
+    // transform: all 0.3s;
+}
+
+.list-items .item:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.item .item-text {
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+}
+
+.item.checked .checkbox {
+    background: #4070f4;
+    border-color: #4070f4;
+    color: #fff;
+}
+
+.item.checked .check-icon {
+    transform: scale(1);
+    transition: all 0.3 ease-in-out;
+}
+
+.item .checkbox {
+    justify-content: center;
+    line-height: 16px;
+    width: 16px;
+    border-radius: 4px;
+    margin-right: 12px;
+    border: 1.5px solid #c0c0c0;
+    transition: all 0.3 ease-in-out;
+}
+
+.checkbox .check-icon {
+    font-size: 16px;
+    transform: scale(0);
+}

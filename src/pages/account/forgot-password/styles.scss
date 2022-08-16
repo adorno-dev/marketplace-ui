@@ -1,0 +1,43 @@
+.forgotPassword {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: calc(100vw - 40px);
+    height: calc(100vh - 180px);
+    user-select: none;
+
+    .title {
+        font-size: 2.2em;
+        margin: 10px 0;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 500px;
+        margin: 10px 0;
+        text-align: center;
+
+        input {
+            margin: 10px 0;
+            padding: 0 40px;
+
+            font-size: 1em;
+            line-height: 65px;
+            border: none;
+            outline: none;
+            border-radius: 30px;
+        }
+        input[type=submit] {
+            cursor: pointer;
+            font-weight: bold;
+            letter-spacing: 0.2em;
+        }
+        .options {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px;
+        }
+    }
+}

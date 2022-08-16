@@ -1,0 +1,24 @@
+.radio input {
+    display: none;
+}
+
+.radio label {
+    user-select: none;
+    cursor: pointer;
+}
+
+.radio input + label:before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    border-radius: 14px;
+    display: inline-block;
+    border: 1px solid gray;
+    vertical-align: middle;
+    margin-right: 8px;
+    margin-bottom: 4px;
+}
+
+.radio input:checked + label:before {
+    background: orange;
+}

@@ -1,0 +1,25 @@
+.checkbox input {
+    display: none;
+}
+
+.checkbox label {
+    user-select: none;
+    cursor: pointer;
+}
+
+.checkbox input + label:before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    border-radius: 14px;
+    display: inline-block;
+    background: transparent;
+    border: 1px solid gray;
+    vertical-align: middle;
+    margin-right: 8px;
+    margin-bottom: 4px;
+}
+
+.checkbox input:checked + label:before {
+    background: orange;
+}
