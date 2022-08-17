@@ -1,4 +1,4 @@
-import { Checkbox, Navbar, Placeholder, Radio, Select, SelectChecker } from '../components'
+import { Checkbox, Navbar, Placeholder, Radio } from '../components'
 
 export * from './categories'
 export * from './products'
@@ -19,10 +19,6 @@ export const Index = () => {
                     <Checkbox />
                     <p className="hints">Are you more than 18 years old?</p>
                     <Radio />
-                    <p className="hints">Book format?</p>
-                    <Select />
-                    <p className="hints">Choose available colors</p>
-                    <SelectChecker />
                 </div>
             </div>
         </Placeholder>

@@ -1,4 +1,4 @@
-import { Navbar, Placeholder } from "../../components"
+import { Navbar, Placeholder, Select } from "../../components"
 
 export const Favorites = () => {
     return <>
@@ -9,6 +9,8 @@ export const Favorites = () => {
                 <div className="header">
                     <p className="hints">Page not implemented yet.</p>
                 </div>
+                <Select name="operating-system" />
+                <Select name="os" />
             </div>
         </Placeholder>
     </>
