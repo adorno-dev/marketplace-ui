@@ -1,6 +1,15 @@
-import { Navbar, Placeholder, Select } from "../../components"
+import { useEffect } from "react"
+import { Navbar, Placeholder, Select, SelectCheckbox } from "../../components"
 
 export const Favorites = () => {
+    useEffect(() => {
+        window.addEventListener("click", (e) => {
+            document.querySelectorAll(".active")
+                .forEach(component => {
+                    component.classList.remove("active")
+                })
+        })
+    }, [])
     return <>
         <Navbar />
         <Placeholder>
@@ -10,7 +19,8 @@ export const Favorites = () => {
                     <p className="hints">Page not implemented yet.</p>
                 </div>
                 <Select name="operating-system" />
-                <Select name="os" />
+                <p className="hints">Page not implemented yet.</p>
+                <SelectCheckbox name="distros" caption="Operating System" />
             </div>
         </Placeholder>
     </>

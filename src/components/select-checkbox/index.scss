@@ -1,0 +1,45 @@
+.select-checkbox {
+    background: #292929;
+    width: 300px;
+    margin: 5px 0;
+    user-select: none;
+
+    & > label {
+        display: block;
+        &:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+    }
+
+    label {
+        display: inline-block;
+        padding: 5px 0 5px 25px;
+        width: 100%;
+    }
+
+    ul {
+        background: inherit;
+        width: inherit;
+        position: absolute;
+        list-style: none;
+        li {
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.05) !important;
+            }
+
+            input[type=checkbox] {
+                display: inline;
+                margin-right: 25px;
+                pointer-events: none;
+            }
+        }
+    }
+    &:not(.active) ul {
+        display: none;
+    }
+}

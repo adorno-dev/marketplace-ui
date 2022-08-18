@@ -2,14 +2,22 @@ import { useEffect, useRef } from 'react'
 import './index.scss'
 
 export const Select = ({name}:{name: string}) => {
-    const select = useRef<HTMLDivElement>(null)
+    const root = useRef<HTMLDivElement>(null)
     const list = useRef<HTMLUListElement>(null)
     const label = useRef<HTMLLabelElement>(null)
     const input = useRef<HTMLInputElement>(null)
     useEffect(() => {
         const items = list.current?.querySelectorAll<HTMLLIElement>("li")
-        select.current?.addEventListener("click", () => 
-            select.current?.classList.toggle("active"))
+        root.current?.addEventListener("click", (e) => {
+            e.stopPropagation()
+            root.current?.classList.toggle("active")
+
+            // window.onclick = () => {
+            //     window.onclick = null
+            //     root.current?.classList.remove("active");
+            // }
+
+        })
         items?.forEach(item => item.addEventListener("click", () => {
             let value = item.getAttribute("value")
             list.current?.querySelectorAll("li.selected")
@@ -22,7 +30,7 @@ export const Select = ({name}:{name: string}) => {
         }))
     }, [])
     return (
-        <div ref={select} className="select">
+        <div ref={root} className="select">
             <input ref={input} type="hidden" name={name} />
             <label ref={label}>Operating System</label>
             <ul ref={list}>
