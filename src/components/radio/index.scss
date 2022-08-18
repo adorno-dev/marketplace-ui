@@ -13,12 +13,13 @@
     height: 18px;
     border-radius: 14px;
     display: inline-block;
-    border: 1px solid gray;
+    border: 2px solid #fff;
     vertical-align: middle;
     margin-right: 8px;
     margin-bottom: 4px;
+    transition: 0.1s;
 }
 
 .radio input:checked + label:before {
-    background: orange;
+    background: gray;
 }

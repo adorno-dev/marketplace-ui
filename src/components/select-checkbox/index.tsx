@@ -10,13 +10,20 @@ export const SelectCheckbox = ({name, caption}:{name: string, caption: string}) 
         const items = list.current?.querySelectorAll<HTMLLIElement>("li")
         root.current?.addEventListener("click", (e) => {
             e.stopPropagation()
+
+            document.querySelectorAll(".active")
+                .forEach(control => {
+                    if (!control.contains(root.current))
+                        control.classList.remove("active")
+                })
+
+            window.onclick = function() {
+                window.onclick = null;
+                root.current?.classList.remove("active")
+            }
+
             root.current?.classList.toggle("active")
 
-            // window.onclick = () => {
-            //     window.onclick = null
-            //     document.querySelectorAll(".active")
-            //         .forEach(o => o.classList.remove("active"))
-            // }
         })
         items?.forEach(item => item.addEventListener("click", (e) => {
             let values = list.current?.querySelectorAll("input[type=checkbox]:checked")
@@ -30,23 +37,25 @@ export const SelectCheckbox = ({name, caption}:{name: string, caption: string}) 
     return (
         <div ref={root} className="select-checkbox">
             <label ref={label}>Operating System</label>
+            <i className="fa-solid fa-angle-down"></i>
             <ul ref={list}>
                 <li>
-                    <label htmlFor="debian">Debian</label>
-                    <input type="checkbox" readOnly id="debian" name={name} value="debian" />
+                    <input type="checkbox" readOnly id={`${name}-debian`} name={name} value="debian" />
+                    <label htmlFor={`${name}-debian`}>Debian</label>
                 </li>
                 <li>
-                    <label htmlFor="arch">Arch</label>
-                    <input type="checkbox" readOnly id="arch" name={name} value="arch" />
+                    <input type="checkbox" readOnly id={`${name}-arch`} name={name} value="arch" />
+                    <label htmlFor={`${name}-arch`}>Arch</label>
                 </li>
                 <li>
-                    <label htmlFor="redhat">Red Hat</label>
-                    <input type="checkbox" readOnly id="redhat" name={name} value="redhat" />
+                    <input type="checkbox" readOnly id={`${name}-redhat`} name={name} value="redhat" />
+                    <label htmlFor={`${name}-redhat`}>Red Hat</label>
                 </li>
                 <li>
-                    <label htmlFor="slackware">Slackware</label>
-                    <input type="checkbox" readOnly id="slackware" name={name} value="slackware" />
+                    <input type="checkbox" readOnly id={`${name}-slackware`} name={name} value="slackware" />
+                    <label htmlFor={`${name}-slackware`}>Slackware</label>
                 </li>
+
             </ul>
         </div>
     )
