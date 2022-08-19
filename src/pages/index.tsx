@@ -16,9 +16,10 @@ export const Index = () => {
                     <p className="hints">Welcome to the marketplace.</p>
                 </div>
                 <div>
-                    <Checkbox />
+                    <Checkbox name="remember" text="Remember" />
                     <p className="hints">Are you more than 18 years old?</p>
-                    <Radio />
+                    <Radio name="old" value='yes' text='Yes' />
+                    <Radio name="old" value='no' text='No' />
                 </div>
             </div>
         </Placeholder>

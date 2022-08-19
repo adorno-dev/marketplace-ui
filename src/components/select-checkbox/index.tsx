@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 
 import './index.scss'
 
-export const SelectCheckbox = ({name, caption}:{name: string, caption: string}) => {
+export const SelectCheckbox = ({name, caption, data}:{name: string, caption: string, data: {id: any, text: string}[]}) => {
     const root = useRef<HTMLDivElement>(null)
     const list = useRef<HTMLUListElement>(null)
     const label = useRef<HTMLLabelElement>(null)
@@ -39,23 +39,12 @@ export const SelectCheckbox = ({name, caption}:{name: string, caption: string}) 
             <label ref={label}>Operating System</label>
             <i className="fa-solid fa-angle-down"></i>
             <ul ref={list}>
-                <li>
-                    <input type="checkbox" readOnly id={`${name}-debian`} name={name} value="debian" />
-                    <label htmlFor={`${name}-debian`}>Debian</label>
-                </li>
-                <li>
-                    <input type="checkbox" readOnly id={`${name}-arch`} name={name} value="arch" />
-                    <label htmlFor={`${name}-arch`}>Arch</label>
-                </li>
-                <li>
-                    <input type="checkbox" readOnly id={`${name}-redhat`} name={name} value="redhat" />
-                    <label htmlFor={`${name}-redhat`}>Red Hat</label>
-                </li>
-                <li>
-                    <input type="checkbox" readOnly id={`${name}-slackware`} name={name} value="slackware" />
-                    <label htmlFor={`${name}-slackware`}>Slackware</label>
-                </li>
-
+                {data.map(m =>
+                    <li key={m.id}>
+                        <input type="checkbox" readOnly id={`${name}-${m.id}`} name={name} value={`${m.id}`} />
+                        <label htmlFor={`${name}-${m.id}`}>{m.text}</label>
+                    </li>
+                )}
             </ul>
         </div>
     )

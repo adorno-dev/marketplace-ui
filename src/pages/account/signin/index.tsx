@@ -1,25 +1,23 @@
 import { Link } from "react-router-dom"
-import { Navbar, Placeholder } from "../../../components"
-
-import './styles.scss'
+import { Checkbox, Navbar, Placeholder } from "../../../components"
 
 export const SignIn = () => {
     return <>
         <Navbar />
         <Placeholder>
-            <div className="signIn">
+            <div className="page">
                 <div className="title">Sign In</div>
                 <p className="hints">Please enter your email and password.</p>
-                <form method="post">
+                <form>
                     <input type="email" name="email" placeholder="Email" autoComplete="off" />
                     <input type="password" name="password" placeholder="Password" autoSave="off" />
-                    <div className="options">
-                        <a href="#">Remember your account?</a>
+                    <input type="submit" value="SIGN IN" />
+                    <div className="space-between">
+                        <Checkbox name="remember" text="Remember Account?" />
                         <Link to="/forgot-password">Forgot your password?</Link>
                     </div>
-                    <input type="submit" value="SIGN IN" />
+                    {/* <p className="hints">Don't you have an account? <Link to="/signup">Sign Up</Link></p> */}
                 </form>
-                <p className="hints">Don't you have an account? <a href="#">Sign Up</a></p>
             </div>
         </Placeholder>
     </>

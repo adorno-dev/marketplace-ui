@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import './index.scss'
 
-export const Select = ({name, caption}:{name: string, caption: string}) => {
+export const Select = ({name, caption, data}:{name: string, caption: string, data: {id: any, text: string}[]}) => {
     const root = useRef<HTMLDivElement>(null)
     const list = useRef<HTMLUListElement>(null)
     const label = useRef<HTMLLabelElement>(null)
@@ -45,13 +45,7 @@ export const Select = ({name, caption}:{name: string, caption: string}) => {
             <i className="fa-solid fa-angle-down"></i>
             <ul ref={list}>
                 <li className='disabled'>{caption}</li>
-                <li value="windows-11">Windows 11</li>
-                <li value="windows-10">Windows 10</li>
-                <li value="windows-81">Windows 8.1</li>
-                <li value="windows-7">Windows 7</li>
-                <li value="freebsd">FreeBSD</li>
-                <li value="linux">Linux</li>
-                <li value="darwin">MacOS</li>
+                {data?.map(m => <li key={m.id} value={m.id}>{m.text}</li>)}
             </ul>
         </div>
     )

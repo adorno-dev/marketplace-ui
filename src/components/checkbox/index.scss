@@ -1,16 +1,26 @@
+.checkbox {
+    display: inline-block;
+    margin-right: 10px;
+}
+
 .checkbox input {
     display: none;
 }
 
 .checkbox label {
+    color: rgba(255, 255, 255, .7);
     user-select: none;
     cursor: pointer;
 }
 
+.checkbox label:hover {
+    color: #fff;
+}
+
 .checkbox input + label:before {
     content: '';
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     border-radius: 14px;
     display: inline-block;
     background: transparent;
