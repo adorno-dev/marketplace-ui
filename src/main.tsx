@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import './index.css'
-import { Categories, Favorites, Index, Products, SignIn, Stores } from './pages'
+import { Categories, Index, Products, SignIn } from './pages'
 import { SignUp } from './pages/account/signup'
 import { ForgotPassword } from './pages/account/forgot-password'
+import { CreateCategory } from './pages/categories/create'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   // <React.StrictMode>
@@ -13,9 +14,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <Routes>
               <Route path='/' element={<Index />} />
               <Route path='/categories' element={<Categories />} />
+              <Route path='/categories/create' element={<CreateCategory />} />
               <Route path='/products' element={<Products />} />
-              <Route path='/stores' element={<Stores />} />
-              <Route path='/favorites' element={<Favorites />} />
               <Route path='/signin' element={<SignIn />} />
               <Route path='/signup' element={<SignUp />} />
               <Route path='/signout' element={<Index />} />

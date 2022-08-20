@@ -25,16 +25,13 @@ a:hover {
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   font-size: 16px;
-  /* line-height: 24px; */
   font-weight: 400;
+  min-width: 1165px;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-
-  min-width: 1165px;
 }
 
 a.button {
@@ -44,28 +41,12 @@ a.button {
   border-radius: 50px;
   min-height: 42px;
   margin: 5px 0px;
-  padding: 11px 40px 11px 40px;
+  padding: 10px 25px;
   transition: 0.2s;
 }
 
 a.button:hover {
   background: rgba(255, 255, 255, 0.05);
-}
-
-/*  */
-
-form {
-  display: flex;
-  flex-direction: column;
-  width: 500px;
-  margin: 10px 0;
-  text-align: center;
-
-  /* line-height: 42px; */
-}
-
-form > p {
-  line-height: 42px;
 }
 
 /*  */
@@ -80,7 +61,6 @@ input[type=password] {
   margin: 5px 0;
   padding: 10px 25px;
   font-size: 1em;
-  /* min-height: 42px; */
 }
 
 input[type=text]:focus,
@@ -96,13 +76,11 @@ input[type=submit] {
   background: #292929;
   color: rgba(255, 255, 255, .7);
   display: inline-block;
-  /* width: 100%; */
   border: none;
   outline: none;
   padding: 10px 40px;
   font-size: 1em;
   margin: 5px 0;
-  /* min-height: 42px; */
   border-radius: 50px;
   cursor: pointer;
 }
@@ -114,19 +92,8 @@ input[type=submit]:hover {
 
 /*  */
 
-.page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: calc(100vw - 40px);
-  height: calc(100vh - 180px);
-  user-select: none;
-  line-height: normal !important;
-}
-
 .page .title {
-  font-size: 2.2em;
+  font-size: 1.8em;
   margin: 10px 0;
 }
 
@@ -134,12 +101,21 @@ input[type=submit]:hover {
   display: flex;
   flex-direction: column;
   width: 500px;
-  margin: 10px 0;
   text-align: center;
+  align-self: center;  
+  margin: calc(70px) 0;
 }
 
 .page form .space-between {
   display: flex;
   justify-content: space-between;
+  margin: 10px 0;
+}
+
+.page form p {
+  line-height: normal !important;
+}
+
+.page form input {
   margin: 10px 0;
 }

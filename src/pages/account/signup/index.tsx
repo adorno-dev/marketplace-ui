@@ -6,9 +6,10 @@ export const SignUp = () => {
         <Navbar />
         <Placeholder>
             <div className="page">
-                <div className="title">Sign Up</div>
-                <p className="hints">Please fill all required fields to complete your account.</p>
                 <form>
+                    <div className="title">Sign Up</div>
+                    <p className="hints">Please fill all required fields to complete your account.</p>
+                    {/*  */}
                     <input type="text" name="username" placeholder="Username" autoComplete="off" />
                     <input type="email" name="email" placeholder="Email" autoComplete="off" />
                     <input type="password" name="password" placeholder="Password" autoSave="off" />

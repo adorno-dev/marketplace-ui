@@ -16,7 +16,7 @@ export const Products = () => {
         <Navbar />
         <Placeholder>
             <div className='page'>
-                <h3>Products</h3>
+                <div className="title">Products</div>
                 <div className="header">
                     <p className='hints'>We found {products.length} products.</p>
                     <a href="#">Create New</a>

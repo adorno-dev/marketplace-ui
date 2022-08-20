@@ -10,8 +10,6 @@ export const Navbar = () => {
                 <Link id="brand" to="/">Marketplace</Link>
                 <Link to="/categories">Categories</Link>
                 <Link to="/products">Products</Link>
-                <Link to="/stores">Stores</Link>
-                <Link to="/favorites">Favorites</Link>
             </div>
             <div>
                 <Link to="/signup">Sign Up</Link>

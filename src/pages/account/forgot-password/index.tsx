@@ -5,9 +5,10 @@ export const ForgotPassword = () => {
         <Navbar />
         <Placeholder>
             <div className="page">
-                <div className="title">Forgot your password?</div>
-                <p className="hints">We gonna help you to rescue your account.</p>
                 <form>
+                    <div className="title">Forgot your password?</div>
+                    <p className="hints">We gonna help you to rescue your account.</p>
+                    {/*  */}
                     <div className="space-between">
                     <p>You'll receive an email including a request token which allow you to redefine your password.</p>
                     </div>
