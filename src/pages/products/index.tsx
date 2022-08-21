@@ -1,8 +1,7 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Navbar, Placeholder } from '../../components'
 import { Product } from '../../models/product'
-
-import '../../styles/page.scss'
 
 export const Products = () => {
     const [products, _] = useState<Array<Product>>([
@@ -19,7 +18,6 @@ export const Products = () => {
                 <div className="title">Products</div>
                 <div className="header">
                     <p className='hints'>We found {products.length} products.</p>
-                    <a href="#">Create New</a>
                 </div>
                 <table>
                     <thead>
@@ -28,7 +26,12 @@ export const Products = () => {
                             <th>Description</th>
                             <th>Stock</th>
                             <th>Price</th>
-                            <th></th>
+                            <th>
+                                <Link className="button" to="/products/new">
+                                    <i className="fa-solid fa-file-circle-plus">&nbsp;</i>
+                                    <span>New</span>
+                                </Link>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,8 +42,14 @@ export const Products = () => {
                                 <td>{m.stock}</td>
                                 <td>{m.price}</td>
                                 <td>
-                                    <a href="#edit">Edit</a>
-                                    <a href="#delete">Delete</a>
+                                    <Link className="button" to={`/products/edit/${m.id}`}>
+                                        <i className="fa-solid fa-file-pen">&nbsp;</i>
+                                        <span>Edit</span>
+                                    </Link>
+                                    <Link className="button" to={`/products/delete/${m.id}`}>
+                                        <i className="fa-solid fa-trash-can">&nbsp;</i>
+                                        <span>Delete</span>
+                                    </Link>
                                 </td>
                             </tr>
                         )}

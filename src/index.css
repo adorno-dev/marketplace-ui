@@ -52,6 +52,7 @@ a.button:hover {
 /*  */
 
 input[type=text],
+input[type=number],
 input[type=email],
 input[type=password] {
   background: #292929;
@@ -64,6 +65,7 @@ input[type=password] {
 }
 
 input[type=text]:focus,
+input[type=number]:focus,
 input[type=email]:focus,
 input[type=password]:focus {
   background: rgba(255, 255, 255, 0.05);
@@ -92,9 +94,21 @@ input[type=submit]:hover {
 
 /*  */
 
+.page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .page .title {
   font-size: 1.8em;
   margin: 10px 0;
+}
+
+.page .header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
 }
 
 .page form {
@@ -109,13 +123,38 @@ input[type=submit]:hover {
 .page form .space-between {
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  /* margin: 10px 0; */
+  column-gap: 20px;
 }
 
 .page form p {
   line-height: normal !important;
+  margin: 10px 0;
 }
 
 .page form input {
   margin: 10px 0;
+}
+
+
+table {
+  table-layout: auto;
+}
+
+table tr th {
+  text-align: left;
+}
+
+table tr th:last-child {
+  font-weight: normal;
+  width: 20%;
+}
+
+table tr th:last-child,
+table tr td:last-child {
+  text-align: right;
+}
+
+table a.button {
+  margin: 3px;
 }

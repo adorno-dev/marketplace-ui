@@ -18,16 +18,17 @@ export const Categories = () => {
                 <div className="title">Categories</div>
                 <div className="header">
                     <p className='hints'>We found {categories.length} categories.</p>
-                    <Link className="button" to="/categories/create">
-                        <i className="fa-solid fa-file-circle-plus">&nbsp;</i>
-                        <span>New</span>
-                    </Link>
                 </div>
                 <table>
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th></th>
+                            <th>
+                                <Link className="button" to="/categories/new">
+                                    <i className="fa-solid fa-file-circle-plus">&nbsp;</i>
+                                    <span>New</span>
+                                </Link>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,14 +36,14 @@ export const Categories = () => {
                             <tr key={m.id}>
                                 <td>{m.name}</td>
                                 <td>
-                                    <a href="#edit" className='button'>
+                                    <Link className="button" to={`/categories/edit/${m.id}`}>
                                         <i className="fa-solid fa-file-pen">&nbsp;</i>
                                         <span>Edit</span>
-                                    </a>
-                                    <a href="#delete" className='button'>
+                                    </Link>
+                                    <Link className="button" to={`/categories/delete/${m.id}`}>
                                         <i className="fa-solid fa-trash-can">&nbsp;</i>
                                         <span>Delete</span>
-                                    </a>
+                                    </Link>
                                 </td>
                             </tr>
                         )}

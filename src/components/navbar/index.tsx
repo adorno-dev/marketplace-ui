@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import './index.scss'
@@ -8,6 +7,7 @@ export const Navbar = () => {
         <div id="navbar">
             <div>
                 <Link id="brand" to="/">Marketplace</Link>
+                <Link to="/stores/new">My Store</Link>
                 <Link to="/categories">Categories</Link>
                 <Link to="/products">Products</Link>
             </div>

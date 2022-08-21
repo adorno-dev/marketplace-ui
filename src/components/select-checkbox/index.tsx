@@ -36,7 +36,7 @@ export const SelectCheckbox = ({name, caption, data}:{name: string, caption: str
     }, [])
     return (
         <div ref={root} className="select-checkbox">
-            <label ref={label}>Operating System</label>
+            <label ref={label}>{caption}</label>
             <i className="fa-solid fa-angle-down"></i>
             <ul ref={list}>
                 {data.map(m =>
