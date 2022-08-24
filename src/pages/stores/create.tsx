@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Navbar, Placeholder, SelectCheckbox } from "../../../components"
+import { Navbar, Placeholder, SelectCheckbox } from "../../components"
 
 export const CreateStore = () => {
     const [categories, _] = useState<{id: any, text: string}[]>([
@@ -14,7 +14,7 @@ export const CreateStore = () => {
         <Placeholder>
             <div className="page">
                 <form>
-                    <div className="title">Create Store</div>
+                    <div className="title">{}</div>
                     <input type="hidden" name="userId" />
                     <SelectCheckbox name="categories" caption="Categories" data={categories} />
                     <input type="text" name="name" placeholder="Name" autoComplete="off" />

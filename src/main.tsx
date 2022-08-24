@@ -7,7 +7,7 @@ import { SignUp } from './pages/account/signup'
 import { ForgotPassword } from './pages/account/forgot-password'
 import { CreateCategory } from './pages/categories/create'
 import { CreateProduct } from './pages/products/create'
-import { CreateStore } from './pages/account/stores/create'
+import { CreateStore } from './pages/stores/create'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
