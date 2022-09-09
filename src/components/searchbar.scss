@@ -1,0 +1,29 @@
+form#searchbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;                
+
+    input[type=text] {
+        background: transparent;
+        border: 1px solid #424242;
+        color: lightblue;
+        min-width: 80%;
+        padding: 0 15px;
+        height: 35px;
+        font-size: 0.85em;
+        outline: none;
+        &:focus,
+        &:hover {
+            border: 1px solid lightblue;
+        }
+    }
+    button {
+        background: transparent;
+        color: #424242;
+        border: 1px solid #424242;
+        border-left: 0;
+        font-size: 1.1em;
+        padding: 0 12px;
+        cursor: pointer;
+    }
+}
