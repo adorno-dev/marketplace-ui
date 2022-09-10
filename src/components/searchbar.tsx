@@ -1,31 +1,36 @@
 import { RefObject, useEffect, useRef, useState } from 'react'
+
 import './searchbar.scss'
 
 export const Searchbar = ({sender}:{sender?:RefObject<HTMLAnchorElement>}) => {
+    const [visible, setVisible] = useState<boolean>(false)
     const formRef = useRef<HTMLFormElement>(null)
     const textRef = useRef<HTMLInputElement>(null)
     const cancelRef = useRef<HTMLButtonElement>(null)
     const [text, setText] = useState<string>("")
+    const checkVisibility = (e: any) => {
+        e.stopPropagation()
+        if (textRef.current?.value.length == 0 && !formRef.current?.contains(e.target)) {
+            window.removeEventListener("click", checkVisibility)
+            cancelHandler(e)
+        }
+    }
     const toggleVisible = () => {
+        visible && textRef.current?.focus()
         sender?.current?.addEventListener("click", (e) => {
-            e.preventDefault()
+            window.addEventListener("click", checkVisibility)
             e.stopPropagation()
-            formRef.current?.classList.add("active")
+            e.preventDefault()
+            setVisible(true)
             textRef.current?.focus()
-            window.onclick = (e: any) => {
-                
-                if (textRef.current?.value.length == 0 && e.target !== textRef.current && !e.target.contains(formRef.current)) {
-                    console.log(e.target);
-                    window.onclick = null;
-                    cancelHandler(e)
-                }
-            }
         })
+    }
+    const textHandler = (e: any) => {
+        setText(e.currentTarget.value)
     }
     const cancelHandler = (e: any) => {
         e.preventDefault()
-        formRef?.current?.classList.remove("active")
-        textRef.current?.focus()
+        setVisible(false)
         setText("")
     }
     const searchHandler = (e: any) => {
@@ -34,10 +39,10 @@ export const Searchbar = ({sender}:{sender?:RefObject<HTMLAnchorElement>}) => {
     }
     useEffect(() => {
         toggleVisible()
-    }, [sender?.current?.classList])
+    }, [visible])
     return (
-        <form id="searchbar" ref={formRef}>
-            <input type="text" ref={textRef} autoFocus value={text} onChange={(e)=>setText(e.currentTarget.value)} />
+        <form id="searchbar" ref={formRef} className={visible ? "active": ""}>
+            <input type="text" ref={textRef} value={text} onChange={textHandler} />
             {
                 text.length > 0 &&
                 <button id="cancelSearch" ref={cancelRef} onClick={cancelHandler}>

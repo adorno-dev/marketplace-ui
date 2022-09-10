@@ -1,0 +1,137 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    min-width: 400px;
+    background: #181a1b;
+    // color: #424242;
+    color: rgb(212, 212, 212);
+}
+
+a {
+    color: rgb(173, 216, 230);
+    text-decoration: none;
+    font-size: .95em;
+}
+
+input {
+    background: transparent;
+    border: 1px solid #424242;
+    color: lightblue;
+    padding: 0 15px;
+    height: 35px;
+    font-size: 0.95em;
+    width: 100%;
+    &:focus {
+        border: 1px solid rgb(173, 216, 230);
+    }
+}
+
+button {
+    background: transparent;
+    color: #686767;
+    border: 1px solid #424242;
+    padding: 5px 25px;
+    height: 35px;
+    font-size: .95em;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+// button {
+//     background: transparent;
+//     color: #686767;
+//     border: 1px solid #424242;
+//     border-left: 0;
+//     font-size: 1.1em;
+//     padding: 0 12px;
+//     cursor: pointer;
+// }
+
+// 
+
+// ul.products {
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: wrap;
+//     column-gap: 10px;
+//     row-gap: 10px;
+//     justify-content: flex-start;
+//     align-content: flex-start;
+//     margin: 10px 0;
+//     list-style: none;
+//     width: 100%;
+
+//     li {
+//         // flex-grow: 1;
+//         flex: 1;
+//         // flex-shrink: 1;
+//         border: 1px solid #424242;
+//         min-width: 175px;
+//         max-width: 220px;
+//         height: 280px;
+
+//         &:last-child {
+//             max-width: fit-content;
+//         }
+//     }
+
+// }
+
+ul.products {
+    list-style: none;
+    margin: 10px 0;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+    li {
+        border: 1px solid #424242;
+        height: 280px;
+        overflow: hidden;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 165px;
+        }
+        & > :not(img) {
+            margin: 5px;
+        }
+        a.product {
+            display: inline-block;
+            height: 30px;
+            width: 95%;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        a.store {
+            display: inline-block;
+            height: 15px;
+            width: 95%;
+            font-size: 0.8em;
+            font-weight: normal;
+        }
+        span.reviews {
+            display: inline-block;
+            font-size: 0.8em;
+            a {
+                display: block;
+            }
+        }
+        span.price {
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        div.split {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+section.favorites {
+    ul {
+        margin: 10px 0;
+        list-style: none;
+
+        li {
+            display: flex;
+            flex-direction: row;
+            border-bottom: 1px solid #424242;
+            justify-content: space-between;
+            padding: 5px 0;
+
+            & * {
+                padding: 5px 0;
+            }
+
+            & a:first-child {
+                font-weight: bold;
+            }
+
+            .reviews a {
+                margin-left: 5px;
+            }
+        }
+    }
+}
