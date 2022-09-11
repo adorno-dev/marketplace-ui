@@ -13,7 +13,7 @@ export const SignUp = () => {
                 <input type="text" placeholder="Username" />
                 <input type="email" placeholder="Email" />
                 <input type="password" placeholder="Password" />
-                <input type="confirmPassword" placeholder="Confirm password" />
+                <input type="password" placeholder="Confirm password" />
                 <div>
                     <p>Already have an account? <Link to="/signin">Sign In</Link> </p>
                     <button>Confirm</button>

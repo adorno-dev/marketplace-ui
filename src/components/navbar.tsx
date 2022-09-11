@@ -20,7 +20,7 @@ export const Navbar = () => {
                 <Link to="/"id="searchButton" ref={searchbar}>
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </Link>
-                <Link to="/" id="cartButton">
+                <Link to="/cart" id="cartButton">
                     <i className="fa-solid fa-cart-shopping"></i>
                 </Link>
                 <Link to="/favorites" id="favoriteButton">

@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Favorites, ForgotPassword, Main, SignIn, SignUp } from './pages'
+import { Cart, Favorites, ForgotPassword, Main, SignIn, SignUp } from './pages'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
@@ -10,6 +10,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Route path='/signup' element={<SignUp />} />
       <Route path='/password' element={<ForgotPassword />} />
       <Route path='/favorites' element={<Favorites />} />
+      <Route path='/cart' element={<Cart />} />
     </Routes>
   </BrowserRouter>
 )

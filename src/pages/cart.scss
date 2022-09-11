@@ -1,0 +1,10 @@
+section.cart {
+    ul {
+        list-style: none;
+        font-size: .9em;
+        li {
+            display: grid;
+            grid-template-columns: 3fr 1fr 1fr;
+        }
+    }
+}

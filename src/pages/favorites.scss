@@ -3,23 +3,67 @@ section.favorites {
         margin: 10px 0;
         list-style: none;
 
+        > li {
+            border-bottom: 1px solid #424242;
+            padding-top: 3px;
+        }
+
         li {
             display: flex;
-            flex-direction: row;
-            border-bottom: 1px solid #424242;
-            justify-content: space-between;
-            padding: 5px 0;
 
-            & * {
-                padding: 5px 0;
+            // product details
+            > div:last-child {
+                flex-grow: 1;
+                align-self: center;
+                margin-left: 10px;
+
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+                // product name
+                > a:first-child {
+                    font-size: .9em;
+                    font-weight: bold;
+                }
+
+                // store & price
+                > div {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    font-size: .9em;
+                    font-weight: bold;
+
+                    .reviews a {
+                        margin-right: 5px;
+                    }
+
+                    span:last-child {
+                        font-size: 1.1em;
+                        font-weight: bold;
+                    }
+
+                    a:last-child span:first-child {
+                        margin-right: 10px;
+                    }
+                }
             }
 
-            & a:first-child {
-                font-weight: bold;
+            @media only screen and (max-width: 400px) {
+                img {
+                    object-fit: cover;
+                    width: 80px;
+                    height: 55px;
+                }
             }
 
-            .reviews a {
-                margin-left: 5px;
+            @media only screen and (min-width: 400px) {
+                img {
+                    object-fit: cover;
+                    width: 100px;
+                    height: 75px;
+                }
             }
         }
     }
