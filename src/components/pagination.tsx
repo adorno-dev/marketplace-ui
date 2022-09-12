@@ -9,7 +9,7 @@ export const Pagination = () => {
             <Link to="/favorites">
                 <i className="fa-solid fa-backward"></i>
             </Link>
-            {pages.map(page => <Link to="/favorites">{page}</Link>)}
+            {pages.map(page => <Link key={page} to="/favorites">{page}</Link>)}
             <Link to="/favorites">
                 <i className="fa-solid fa-forward"></i>
             </Link>
