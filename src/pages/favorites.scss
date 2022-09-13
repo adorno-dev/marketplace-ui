@@ -1,68 +1,68 @@
 section.favorites {
     ul {
-        margin: 10px 0;
         list-style: none;
-
-        > li {
-            border-bottom: 1px solid #424242;
-            padding-top: 3px;
-        }
+        align-items: center;
+        margin: 10px 0;
 
         li {
-            display: flex;
+            display: grid;            
+            column-gap: 5px;     
+            grid-template-columns: 100px 170px;       
+            grid-template-areas: 
+                "image name    name"
+                "image reviews price"
+                "image store   remove";
+            
+            border-bottom: 1px solid #424242;
+            padding: 5px 0;
 
-            // product details
-            > div:last-child {
-                flex-grow: 1;
-                align-self: center;
-                margin-left: 10px;
+            .image {
+                grid-area: image;
+                justify-self: left;
 
+                object-fit: cover;
+                width: 100px;
+                height: 75px;
+            }
+
+            .name {
+                grid-area: name;
+                font-weight: bold;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
+            }
 
-                // product name
-                > a:first-child {
-                    font-size: .9em;
-                    font-weight: bold;
-                }
-
-                // store & price
-                > div {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    font-size: .9em;
-                    font-weight: bold;
-
-                    .reviews a {
-                        margin-right: 5px;
-                    }
-
-                    span:last-child {
-                        font-size: 1.1em;
-                        font-weight: bold;
-                    }
-
-                    a:last-child span:first-child {
-                        margin-right: 10px;
-                    }
+            .reviews {
+                grid-area: reviews;
+                font-size: .95em;
+                align-self: center;
+                a {
+                    margin-right: 5px;
                 }
             }
 
-            @media only screen and (max-width: 400px) {
-                img {
-                    object-fit: cover;
-                    width: 80px;
-                    height: 55px;
-                }
+            .price {
+                grid-area: price;
+                align-self: center;
+                text-align: right;
+                font-weight: bold;
             }
 
-            @media only screen and (min-width: 400px) {
-                img {
-                    object-fit: cover;
-                    width: 100px;
-                    height: 75px;
+            .store {
+                font-size: .85em;
+                font-weight: bold;
+                align-self: center;
+            }
+
+            .remove {
+                grid-area: remove;
+                justify-self: right;
+                align-self: center;
+                span {
+                    font-size: .9em;
+                    font-weight: bold;
+                    margin-right:  5px;
                 }
             }
         }

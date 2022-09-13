@@ -23,28 +23,22 @@ export const Favorites = () => {
                     {
                         favorites.map(f =>
                             <li key={f.id}>
-                                <div><img src="/public/assets/products/product-1.webp" /></div>
-                                <div>
-                                    <Link to="/">{f.name}</Link>
-                                    <div>
-                                        <div className="reviews">
-                                            <Link to="/">{f.reviews} Reviews</Link>
-                                            <i className="fa-sharp fa-solid fa-star"></i>
-                                            <i className="fa-sharp fa-solid fa-star"></i>
-                                            <i className="fa-sharp fa-solid fa-star"></i>
-                                            <i className="fa-sharp fa-solid fa-star"></i>
-                                            <i className="fa-sharp fa-solid fa-star"></i>
-                                        </div>
-                                        <span>$ {f.price}0.000.000</span>
-                                    </div>
-                                    <div>
-                                        <Link to="/">{f.store}</Link>
-                                        <Link to="/">
-                                            <span>REMOVE</span>
-                                            <i className="fa-solid fa-trash"></i>
-                                        </Link>
-                                    </div>
+                                <img className="image" src="/public/assets/products/product-1.webp" />
+                                <Link className="name" to="/favorites">{f.name}</Link>
+                                <div className="reviews">
+                                    <Link to="/">{f.reviews} Reviews</Link>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
+                                    <i className="fa-sharp fa-solid fa-star"></i>
                                 </div>
+                                <span className="price">$ {f.price}</span>
+                                <Link className="store" to="/{f.store}">VISIT STORE</Link>
+                                <Link className="remove" to="/">
+                                    <span>REMOVE</span>
+                                    <i className="fa-solid fa-trash"></i>
+                                </Link>
                             </li>
                         )
                     }
