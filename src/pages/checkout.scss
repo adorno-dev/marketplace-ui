@@ -1,53 +1,74 @@
 section.checkout {
-    ul {
-        list-style: none;
-        margin: 10px 0;
-        font-size: .95em;
 
-        display: flex;
-        flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
 
-        li {
-            margin: 5px 0;
-            > div:first-child {
-                font-weight: bold;
-            }
-            > div:last-child {
-                display: flex;
-                font-size: .95em;
-                font-style: italic;
-                justify-content: space-between;
-                border-bottom: 1px solid #424242;
-                padding: 5px 0;
-            }
-        }
-    }
-    > .total {
-        font-size: .85em;
-        :last-child {
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-    }
-
-    > div {
-        text-align: right;
-        align-items: center;
-        margin: 10px 0 0;
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin: 10px 0;
+    @media only screen and (min-width: 900px) {
+        flex-direction: row;
+        justify-content: space-between;
         > div {
-            display: flex;
-            gap: inherit;
-            justify-content: space-between;
+            width: calc(50% - 20px);
         }
-        button {
-            margin: 0 5px;
+    }
+
+    > div:first-child {
+        ul {
+            list-style: none;
+            margin: 10px 0;
+            font-size: .95em;
+    
+            display: flex;
+            flex-direction: column;
+    
+            li {
+                margin: 5px 0;
+                > div:first-child {
+                    font-weight: bold;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                > div:last-child {
+                    display: flex;
+                    font-size: .95em;
+                    font-style: italic;
+                    justify-content: space-between;
+                    border-bottom: 1px solid #424242;
+                    padding: 5px 0;
+                }
+            }
+        }
+        > .total {
+            font-size: .85em;
+            :last-child {
+                font-weight: bold;
+                font-size: 1.2em;
+            }
+        }
+    
+        > div {
+            text-align: right;
+            align-items: center;
+            margin: 10px 0 0;
+        }
+    }
+
+    > div:last-child {
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 10px 0;
+
+            > div {
+                display: flex;
+                gap: inherit;
+                justify-content: space-between;
+            }
+            button {
+                margin: 0 5px;
+            }
         }
     }
 }

@@ -1,12 +1,14 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Searchbar } from './searchbar'
+import { Usermenu } from './usermenu'
 
 import './navbar.scss'
 
 export const Navbar = () => {
     const searchbar = useRef<HTMLAnchorElement>(null)
-    return (
+    const usermenu = useRef<HTMLAnchorElement>(null)
+    return <>
         <nav id="navbar">
             <div>
                 <Link to="/" id="menuButton">
@@ -26,10 +28,11 @@ export const Navbar = () => {
                 <Link to="/favorites" id="favoriteButton">
                     <i className="fa-solid fa-heart"></i>
                 </Link>
-                <Link to="/signin" id="userButton">
+                <Link to="/signin" id="userButton" ref={usermenu}>
                     <i className="fa-solid fa-user"></i>
                 </Link>
             </div>
         </nav>
-    )
+        <Usermenu sender={usermenu} />
+    </>
 }

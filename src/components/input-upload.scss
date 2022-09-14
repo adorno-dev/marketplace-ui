@@ -1,0 +1,17 @@
+div.input-upload {
+    input { display: none; }
+    span {
+        color: #688189;
+        font-size: .85em;
+        margin: 0 15px;
+    }
+    i {
+        color: #424242;
+        margin: 0 15px;
+    }
+    &:hover {
+        border: 1px solid rgb(173, 216, 230);
+    }
+    border: 1px solid #424242;
+    cursor: pointer;
+}

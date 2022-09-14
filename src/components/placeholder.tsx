@@ -4,6 +4,8 @@ import './placeholder.scss'
 
 export const Placeholder = ({children}:{children:ReactNode}) => {
     return (
-        <section id="placeholder">{children}</section>
+        <section id="placeholder">
+            {children}
+        </section>
     )
 }

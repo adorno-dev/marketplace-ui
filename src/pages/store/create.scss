@@ -1,4 +1,4 @@
-form#signin {
+form#store {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7,13 +7,16 @@ form#signin {
     max-width: 450px;
     margin: 0 auto;
 
-    
-
     div {
         display: flex;
         justify-content: space-between;
         align-items: center;
         height: 35px;
         width: 100%;
+    }
+
+    > div:last-child {
+        justify-content: space-between;
+        // justify-content: right;
     }
 }

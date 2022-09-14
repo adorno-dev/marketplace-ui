@@ -24,51 +24,56 @@ export const Checkout = () => {
     <Navbar />
     <Placeholder>
         <section className="checkout">
-            <h2>Check out</h2>
-            {/* <p>Confirm your billing information to complete the check out.</p> */}
-            <ul>
-            {
-                cartItems.map(m =>
-                    <li key={m.id}>
-                        <div>{m.description}</div>
-                        <div>
-                            <span>(Qty x Unit): {m.quantity} x $ {m.price}</span>
-                            <b>$ {m.price}</b>
-                        </div>
-                    </li>
-                )
-            }
-            </ul>
-            <div className="total">
-                <div>TOTAL</div>
-                <div>$ {cartItems.reduce((sum, items) => sum + (items.quantity * items.price), 0)}</div>
+            <div>
+                <h2>Check out</h2>
+                {/* <p>Confirm your billing information to complete the check out.</p> */}
+                <ul>
+                {
+                    cartItems.map(m =>
+                        <li key={m.id}>
+                            <div>{m.description}</div>
+                            <div>
+                                <span>(Qty x Unit): {m.quantity} x $ {m.price}</span>
+                                <b>$ {m.price}</b>
+                            </div>
+                        </li>
+                    )
+                }
+                </ul>
+                <div className="total">
+                    <div>TOTAL</div>
+                    <div>$ {cartItems.reduce((sum, items) => sum + (items.quantity * items.price), 0)}</div>
+                </div>
             </div>
 
-            <h2>Billing information</h2>
-            <p>Confirm your billing information to complete the check out.</p>
-            <form>
-                <div>
-                    <input type="text" name="firstname" placeholder="First Name" />
-                    <input type="text" name="lastname" placeholder="Last Name" />
-                </div>
-                <input type="email" name="email" placeholder="Email" />
-                <input type="text" name="phone" placeholder="Phone Number" />
-                <div>
-                    <input type="text" name="cardnumber" placeholder="Card Number" />
-                    <input type="text" name="nameoncard" placeholder="Name On Card" />
-                </div>
-                <div>
-                    <input type="text" name="cvv" placeholder="CVV" />
-                    <input type="text" name="expiredate" placeholder="MMYY" />
-                </div>
-                <div>
-                    <span></span>
-                    <span>
-                        <button onClick={cart}>My Cart</button>
-                        <button onClick={checkout}>Buy Now</button>
-                    </span>
-                </div>
-            </form>
+            <div>
+                <h2>Billing information</h2>
+                <p>Confirm your billing information to complete the check out.</p>
+                <form>
+                    <div>
+                        <input type="text" name="firstname" placeholder="First Name" />
+                        <input type="text" name="lastname" placeholder="Last Name" />
+                    </div>
+                    <input type="email" name="email" placeholder="Email" />
+                    <input type="text" name="phone" placeholder="Phone Number" />
+                    <div>
+                        <input type="text" name="cardnumber" placeholder="Card Number" />
+                        <input type="text" name="nameoncard" placeholder="Name On Card" />
+                    </div>
+                    <div>
+                        <input type="text" name="cvv" placeholder="CVV" />
+                        <input type="text" name="expiredate" placeholder="MMYY" />
+                    </div>
+                    <div>
+                        <span></span>
+                        <span>
+                            <button onClick={cart}>My Cart</button>
+                            <button onClick={checkout}>Buy Now</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            
         </section>
     </Placeholder>
     </>

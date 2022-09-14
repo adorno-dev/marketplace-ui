@@ -1,0 +1,23 @@
+div#usermenu {
+    display: block;
+    position: fixed;
+    top: 56px;
+    right: 10px;
+    background: #181a1b;
+    border: 1px solid #424242;
+    border-top: none;
+
+    div {
+        padding: 10px 30px;
+    }
+
+    div:first-child {
+        border-bottom: 1px solid #424242;
+    }
+    ul {
+        list-style: none;
+        li {
+            padding: 2px 0;
+        }
+    }
+}
