@@ -1,6 +1,8 @@
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Cart, Checkout, Favorites, ForgotPassword, Main, SignIn, SignUp, Store } from './pages'
+import { Admin, Cart, Categories, Checkout, Favorites, ForgotPassword, Main, SignIn, SignUp, Store } from './pages'
+import { CreateCategory } from './pages/admin/categories/create'
+import { Products } from './pages/admin/products'
 import { CheckoutCompleted } from './pages/checkout-completed'
 import { NewStore } from './pages/store/create'
 
@@ -18,6 +20,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Route path='/checkout-completed' element={<CheckoutCompleted />} />
       <Route path='/store' element={<Store />} />
       <Route path='/store/new' element={<NewStore />} />
+      <Route path='/admin' element={<Admin />} />
+      <Route path='/admin/categories' element={<Categories />} />
+      <Route path='/admin/categories/new' element={<CreateCategory />} />
+      <Route path='/admin/products' element={<Products />} />
     </Routes>
   </BrowserRouter>
 )

@@ -4,5 +4,6 @@ export type Product = {
     description?: string,
     store: string,
     reviews: number,
-    price: number
+    price: number,
+    quantity: number
 }
