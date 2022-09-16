@@ -1,0 +1,26 @@
+span.uploader {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    i[class^="fa-"] {
+        width: 40px;
+        height: 40px;
+        // line-height: 38px;
+        text-align: center;
+        padding: 12px 0;
+        font-size: 1.1em;
+        color: #424242;
+        border: 1px solid #424242;
+        margin-right: 5px;
+        cursor: pointer;
+    }
+    input[type=file] {
+        display: none;
+    }
+    img {
+        object-fit: cover;
+        width: 40px;
+        height: 40px;
+        margin: 0 5px;
+    }
+}

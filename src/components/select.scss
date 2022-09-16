@@ -1,4 +1,5 @@
 div.select {
+    background: #181a1b;
     color: #688189;
     border: 1px solid #424242;
     font-size: .85em;
@@ -12,6 +13,7 @@ div.select {
 
     label {
         padding: 0 15px;
+        color: lightblue;
     }
 
     ul {
@@ -21,7 +23,13 @@ div.select {
         position: absolute;
         top: calc(35px - 1px);
         left: -1px;
+
         width: inherit;
+        
+        @media only screen and (max-width: 400px) {
+            width: calc(100% + .5px);
+        }
+
         box-sizing: content-box;
         border: 1px solid #424242;
         border-top: none;
@@ -30,7 +38,7 @@ div.select {
         border: 1px solid rgb(173, 216, 230);
         border-top: none;
 
-        max-height: 310px;
+        max-height: 318px;
         overflow-y: auto;
 
         li {
@@ -38,6 +46,7 @@ div.select {
             line-height: 35px;
             &:hover {
                 background: rgba(255, 255, 255, 0.05) !important;
+                color: lightblue;
             }
             &.disabled {
                 color: gray;

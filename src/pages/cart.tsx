@@ -16,7 +16,7 @@ export const Cart = () => {
     ])
     const updateQuantity = (id: number, quantity: number) => {
         const newState = cartItems.map(obj => {
-            return obj.id === id ? {...obj, quantity: quantity} : obj
+            return obj.id === id ? {...obj, quantity: quantity > 0 ? quantity : 1} : obj
         })
         setCartItems(newState)
     }

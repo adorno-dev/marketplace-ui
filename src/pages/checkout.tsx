@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { Navbar, Placeholder } from '../components'
 import { CartItem } from '../models/cart-item'
@@ -14,9 +15,6 @@ export const Checkout = () => {
         {id: 4, description: "Pistola Beretta APX", store: "A4U Store", quantity: 3, price: 1000.00 },
         {id: 5, description: "COLDRE KYDEX IWB INVICTUS TAURUS SÉRIE 100", store: "A4U Store", quantity: 5, price: 1000.00 }
     ])
-    const cart = () => {
-        navigate("/cart")
-    }
     const checkout = () => {
         navigate("/checkout-completed")
     }
@@ -26,7 +24,7 @@ export const Checkout = () => {
         <section className="checkout">
             <div>
                 <h2>Check out</h2>
-                {/* <p>Confirm your billing information to complete the check out.</p> */}
+                <p>Confirm your billing information to complete the check out.</p>
                 <ul>
                 {
                     cartItems.map(m =>
@@ -65,11 +63,8 @@ export const Checkout = () => {
                         <input type="text" name="expiredate" placeholder="MMYY" />
                     </div>
                     <div>
-                        <span></span>
-                        <span>
-                            <button onClick={cart}>My Cart</button>
-                            <button onClick={checkout}>Buy Now</button>
-                        </span>
+                        <Link to="/cart">Back to Cart</Link>
+                        <button onClick={checkout}>Buy Now</button>
                     </div>
                 </form>
             </div>

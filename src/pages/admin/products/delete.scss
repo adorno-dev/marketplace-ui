@@ -1,0 +1,28 @@
+div#delete-product {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+    min-width: 360px;
+
+    div {
+        display: grid;
+        grid-template-columns: 30% auto;
+        margin: 25px 0;
+        min-width: 360px;
+
+        > :nth-child(odd) {
+            text-align: right;
+            margin-right: 10px;
+            color: gray;
+            font-weight: bold;
+        }
+    }
+
+    > span {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-width: 360px;
+    }
+}

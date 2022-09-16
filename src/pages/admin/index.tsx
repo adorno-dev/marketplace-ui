@@ -11,7 +11,7 @@ export const Admin = () => {
     <Navbar />
     <Placeholder>
         <section id="admin">
-            <h2>Admin Pages</h2>
+            <h2>Marketplace</h2>
             <p>This page was made only for development purposes.</p>
             <div>
                 <Link to="/admin/categories">[ Categories ]</Link>

@@ -1,7 +1,9 @@
 section#categories {
     > div {
-        // text-align: right;
-        margin: 10px 0 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 0 0;
     }
     ul {
         list-style: none;

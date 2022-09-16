@@ -27,6 +27,7 @@ export const Categories = () => {
             <h2>Categories</h2>
             <p>There are {categories.length} categories available.</p>
             <div>
+                <Link to="/admin">Back to Admin</Link>
                 <button onClick={createHandler}>Create</button>
             </div>
             <ul>
@@ -44,8 +45,8 @@ export const Categories = () => {
                             }
                         </span>
                         <div>
-                            <Link to="/">EDIT<i className="fa-solid fa-pen-to-square"></i></Link>
-                            <Link to="/">DELETE<i className="fa-solid fa-trash"></i></Link>
+                            <Link to={{pathname: `/admin/categories/edit/${m.id}`}}>EDIT<i className="fa-solid fa-pen-to-square"></i></Link>
+                            <Link to={{pathname: `/admin/categories/delete/${m.id}`}}>DELETE<i className="fa-solid fa-trash"></i></Link>
                         </div>
                     </li>
                 )

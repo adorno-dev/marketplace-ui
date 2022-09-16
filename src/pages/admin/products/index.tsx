@@ -1,10 +1,12 @@
 import { useState } from "react"
-import { Navbar, Placeholder } from "../../../components"
+import { Link, useNavigate } from "react-router-dom"
+import { Navbar, Pagination, Placeholder } from "../../../components"
 import { Product } from "../../../models"
 
 import './index.scss'
 
 export const Products = () => {
+    const navigate = useNavigate()
     const [products, setProducts] = useState<Product[]>([
         {id: 1, name: "Product #1", description: "Product description #1", price: 100.00, quantity: 1, store: "A4U Store", reviews: 0},
         {id: 2, name: "Product #2", description: "Product description #2", price: 100.00, quantity: 1, store: "A4U Store", reviews: 0},
@@ -16,12 +18,36 @@ export const Products = () => {
         {id: 8, name: "Product #8", description: "Product description #8", price: 100.00, quantity: 1, store: "A4U Store", reviews: 0},
         {id: 9, name: "Product #9", description: "Product description #9", price: 100.00, quantity: 1, store: "A4U Store", reviews: 0},
     ])
+    const createHandler = () => {
+        navigate("/admin/products/new")
+    }
     return <>
     <Navbar />
     <Placeholder>
         <section id="products">
             <h2>Products</h2>
             <p>There are {products.length} products available.</p>
+            <div>
+                <Link to="/admin">Back to Admin</Link>
+                <button onClick={createHandler}>Create</button>
+            </div>
+            <ul>
+                <li>
+                    <b>NAME</b>
+                </li>
+            {
+                products.map(m =>
+                    <li key={m.id}>
+                        <span>{m.name}</span>
+                        <div>
+                            <Link to={{pathname: `/admin/products/edit/${m.id}`}}>EDIT<i className="fa-solid fa-pen-to-square"></i></Link>
+                            <Link to={{pathname: `/admin/products/delete/${m.id}`}}>DELETE<i className="fa-solid fa-trash"></i></Link>
+                        </div>
+                    </li>
+                )
+            }
+            </ul>
+            <Pagination />
         </section>
     </Placeholder>
     </>
