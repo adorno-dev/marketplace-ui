@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Navbar, Placeholder } from '../../../components'
+import { ImageViewer } from '../../../components/image-viewer'
 import { Select } from '../../../components/select'
-import { Uploader } from '../../../components/uploader'
+import { ImageBrowser } from '../../../components/image-browser'
 
 import './create.scss'
 
@@ -42,7 +43,8 @@ export const CreateProduct = () => {
                 <input type="number" name="stock" placeholder="Stock" />
             </div>
             <textarea name="description" placeholder="Description"></textarea>
-            <Uploader />
+            <ImageBrowser name="screenshoots" multiple />
+            <ImageViewer name="screenshoots" />
             <div>
                 <Link to="/admin/products">Back to Products</Link>
                 <button>Confirm</button>

@@ -1,7 +1,12 @@
 import { useEffect, useRef } from 'react'
-import './uploader.scss'
+import './image-browser.scss'
 
-export const Uploader = () => {
+type Props = {
+    name: string,
+    multiple?: boolean
+}
+
+export const ImageBrowser = (props: Props) => {
     const component = useRef<HTMLDivElement>(null)
     const inputFile = useRef<HTMLInputElement>(null)
     const clickHandler = () => {
@@ -22,9 +27,9 @@ export const Uploader = () => {
         })
     }, [])
     return <>
-    <span className="uploader" onClick={clickHandler} ref={component}>
-        <input type="file" name="screenshoots" multiple ref={inputFile} />
-        <i className="fa-solid fa-plus"></i>
+    <span className="image-browser" ref={component}>
+        <input type="file" id={props.name} name={props.name} multiple={props.multiple} ref={inputFile} />
+        <i className="fa-solid fa-plus" onClick={clickHandler}></i>
     </span>
     </>
 }

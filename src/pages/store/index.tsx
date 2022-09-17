@@ -12,7 +12,6 @@ export const Store = () => {
             <p>Manage your marketplace store and your products.</p>
             <div>
                 <Link to="/store/new">New Store</Link>
-                <Link to="/store/new">New Product</Link>
             </div>
         </section>
     </Placeholder>

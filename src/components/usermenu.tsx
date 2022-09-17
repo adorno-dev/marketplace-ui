@@ -36,8 +36,9 @@ export const Usermenu = ({sender}:{sender?:RefObject<HTMLAnchorElement>}) => {
             </div>
             <div>
                 <ul>
-                    <li><Link to="/">Configure my account</Link></li>
-                    <li><Link to="/store">My Store</Link></li>
+                    <li><Link to="/account">My account</Link></li>
+                    <li><Link to="/favorites">My favorites</Link></li>
+                    <li><Link to="/store">My store</Link></li>
                     <li><Link to="/signout">Sign Out</Link></li>
                 </ul>
             </div>

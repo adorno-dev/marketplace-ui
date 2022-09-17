@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Navbar, Placeholder } from '../../../components'
 import { Select } from '../../../components/select'
-import { Uploader } from '../../../components/uploader'
+import { ImageBrowser } from '../../../components/image-browser'
 
 import './edit.scss'
 
@@ -42,7 +42,7 @@ export const EditProduct = () => {
                 <input type="number" name="stock" placeholder="Stock" />
             </div>
             <textarea name="description" placeholder="Description"></textarea>
-            <Uploader />
+            <ImageBrowser />
             <div>
                 <Link to="/admin/products">Back to Products</Link>
                 <button>Confirm</button>

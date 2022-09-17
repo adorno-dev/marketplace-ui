@@ -22,12 +22,12 @@ div.select {
         background: #181a1b;
         position: absolute;
         top: calc(35px - 1px);
-        left: -1px;
 
-        width: inherit;
+        left: -.5px;
+        width: calc(100% - .5px);
         
         @media only screen and (max-width: 400px) {
-            width: calc(100% + .5px);
+            width: calc(100%);
         }
 
         box-sizing: content-box;

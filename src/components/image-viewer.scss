@@ -1,0 +1,25 @@
+span.image-viewer {
+    position: absolute;
+    display: none;
+    background: #fff;
+    margin: 0 auto;
+    height: 350px;
+    width: 600px;
+    i[class^="fa-"] {
+        position: absolute;
+        background: #737373;
+        padding: 6px 8px;
+        border-radius: 20px;
+        right: -13px;
+        top: -13px;
+        cursor: pointer;
+    }
+    img {
+        height: 100%;
+        width: 100%;
+    }
+
+    &.active {
+        display: block;
+    }
+}
