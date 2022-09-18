@@ -1,25 +1,45 @@
-span.image-viewer {
+section.image-viewer {
     position: absolute;
     display: none;
+    flex-direction: column;
     background: #fff;
     margin: 0 auto;
+
+    @media only screen and (max-width: 630px) {
+        width: 94%;    
+    }
+
     height: 350px;
     width: 600px;
+
     i[class^="fa-"] {
         position: absolute;
         background: #737373;
-        padding: 6px 8px;
+        padding: 2px 4px;
         border-radius: 20px;
-        right: -13px;
-        top: -13px;
+        right: -8px;
+        top: -8px;
         cursor: pointer;
     }
-    img {
+    
+    > img {
+        object-fit: cover;
         height: 100%;
-        width: 100%;
     }
 
-    &.active {
-        display: block;
+    > div {
+        background: #181a1b;
+
+        img {
+            object-fit: cover;
+            width: 40px;
+            height: 40px;
+            margin: 5px 5px 0 0;
+            cursor: pointer;
+        }
+    }
+
+    > &.active {
+        display: flex;
     }
 }

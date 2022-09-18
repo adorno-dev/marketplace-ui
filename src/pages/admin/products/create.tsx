@@ -1,9 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Navbar, Placeholder } from '../../../components'
-import { ImageViewer } from '../../../components/image-viewer'
-import { Select } from '../../../components/select'
-import { ImageBrowser } from '../../../components/image-browser'
+import { ImageBrowser, ImageViewer, Navbar, Placeholder, Select } from '../../../components'
 
 import './create.scss'
 

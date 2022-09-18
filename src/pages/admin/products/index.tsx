@@ -34,11 +34,15 @@ export const Products = () => {
             <ul>
                 <li>
                     <b>NAME</b>
+                    <b className="columns">STORE</b>
+                    <b className="columns">PRICE</b>
                 </li>
             {
                 products.map(m =>
                     <li key={m.id}>
                         <span>{m.name}</span>
+                        <span className="columns">{m.store}</span>
+                        <span className="columns">$ {m.price}</span>
                         <div>
                             <Link to={{pathname: `/admin/products/edit/${m.id}`}}>EDIT<i className="fa-solid fa-pen-to-square"></i></Link>
                             <Link to={{pathname: `/admin/products/delete/${m.id}`}}>DELETE<i className="fa-solid fa-trash"></i></Link>

@@ -10,7 +10,26 @@ section#products {
         list-style: none;
         li {
             display: grid;
-            grid-template-columns: auto 130px;
+
+
+            @media only screen and (min-width: 900px) {
+                grid-template-columns: minmax(115px, 795px) minmax(115px, 795px) minmax(115px, 795px) 130px;
+                .columns {
+                    display: unset;
+                    text-align: center;
+                }
+            }
+
+            @media only screen and (max-width: 900px) {
+                grid-template-columns: auto 130px;
+                .columns {
+                    display: none;
+                }
+            }
+
+            // grid-template-columns: auto 130px;
+
+
             align-items: center;
             padding: 5px 0;
             border-bottom: 1px solid #424242;
