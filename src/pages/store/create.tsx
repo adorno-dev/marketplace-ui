@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
-import { Navbar, Placeholder } from "../../components"
-import { InputUpload } from "../../components/input-upload"
+import { ImageBrowser, ImageViewer, Navbar, Placeholder } from "../../components"
 
 import './create.scss'
 
@@ -13,8 +12,10 @@ export const NewStore = () => {
             <p>Please fill all required fields to set up your store.</p>
             <input type="text" name="name" placeholder="Name" />
             <input type="text" name="url" placeholder="URL" />
-            <InputUpload name="logo" placeholder="Logo" />
-            <InputUpload name="banner" placeholder="Banner" />
+            <ImageBrowser name="logo" placeholder="Logo" />
+            <ImageViewer name="logo" />
+            <ImageBrowser name="banner" placeholder="Banner" />
+            <ImageViewer name="banner" />
             <textarea name="profile" placeholder="Profile"></textarea>
             <textarea name="politics" placeholder="Politics"></textarea>
             <div>

@@ -7,7 +7,7 @@ form#store {
     max-width: 450px;
     margin: 0 auto;
 
-    div {
+    > div {
         display: flex;
         justify-content: space-between;
         align-items: center;

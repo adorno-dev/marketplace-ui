@@ -40,7 +40,7 @@ export const EditProduct = () => {
                 <input type="number" name="stock" placeholder="Stock" />
             </div>
             <textarea name="description" placeholder="Description"></textarea>
-            <ImageBrowser name="screenshoots" multiple />
+            <ImageBrowser name="screenshoots" multiple placeholder="Screenshoots" />
             <ImageViewer name="screenshoots" />
             <div>
                 <Link to="/admin/products">Back to Products</Link>

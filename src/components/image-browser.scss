@@ -9,7 +9,8 @@ span.image-browser {
         text-align: center;
         padding: 12px 0;
         font-size: 1.1em;
-        color: #424242;
+        // color: #424242;
+        color: #688189;
         border: 1px solid #424242;
         margin-right: 5px;
         cursor: pointer;
@@ -23,5 +24,11 @@ span.image-browser {
         height: 40px;
         margin: 0 5px;
         cursor: pointer;
+    }
+    > span {
+        font-size: .9em;
+        font-style: italic;
+        margin-left: 2px;
+        color: #688189;
     }
 }
