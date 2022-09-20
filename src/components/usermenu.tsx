@@ -1,9 +1,12 @@
-import { RefObject, useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { RefObject, useContext, useEffect, useRef, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { AuthenticationContext } from '../contexts/authentication-context'
 
 import './usermenu.scss'
 
 export const Usermenu = ({sender}:{sender?:RefObject<HTMLAnchorElement>}) => {
+    const context = useContext(AuthenticationContext)
+    const navigate = useNavigate()
     const usermenu = useRef<HTMLDivElement>(null)
     const [visible, setVisible] = useState<boolean>(false)
     const checkVisibility = (e: any) => {
@@ -23,6 +26,11 @@ export const Usermenu = ({sender}:{sender?:RefObject<HTMLAnchorElement>}) => {
             setVisible(e.currentTarget.classList.contains("active"))
         })
     }
+    const signOut = (e: any) => {
+        e.preventDefault();
+        context?.signOut();
+        navigate("/signin");
+    }
     useEffect(() => {
         toggleVisible()
     }, [])
@@ -39,7 +47,7 @@ export const Usermenu = ({sender}:{sender?:RefObject<HTMLAnchorElement>}) => {
                     <li><Link to="/account">My account</Link></li>
                     <li><Link to="/favorites">My favorites</Link></li>
                     <li><Link to="/store">My store</Link></li>
-                    <li><Link to="/signout">Sign Out</Link></li>
+                    <li><Link to="/signout" onClick={signOut}>Sign Out</Link></li>
                 </ul>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ImageBrowser, ImageViewer, Navbar, Placeholder, Select } from '../../../components'
+import { Authorized, ImageBrowser, ImageViewer, Navbar, Placeholder, Select } from '../../../components'
 
 import './create.scss'
 
@@ -28,6 +28,7 @@ export const CreateProduct = () => {
         {id: "20", text: "Category #20"},
     ])
     return <>
+    <Authorized>
     <Navbar />
     <Placeholder>
         <form id="create-product">
@@ -48,5 +49,6 @@ export const CreateProduct = () => {
             </div>
         </form>
     </Placeholder>
+    </Authorized>
     </>
 }

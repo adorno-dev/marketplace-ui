@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom"
-import { Navbar, Placeholder } from "../../../components"
+import { Authorized, Navbar, Placeholder } from "../../../components"
 
 import './delete.scss'
 
@@ -7,6 +7,7 @@ export const DeleteProduct = () => {
     const {id} = useParams()
     const product = {id, name: "Product #1", description: "Product description #1", price: 100.00, quantity: 1, store: "A4U Store", reviews: 0}
     return <>
+    <Authorized>
     <Navbar />
     <Placeholder>
         <div id="delete-product">
@@ -28,5 +29,6 @@ export const DeleteProduct = () => {
             </span>
         </div>
     </Placeholder>
+    </Authorized>
     </>
 }

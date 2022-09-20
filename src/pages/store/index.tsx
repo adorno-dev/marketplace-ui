@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom"
-import { Navbar, Placeholder } from "../../components"
+import { Authorized, Navbar, Placeholder } from "../../components"
 
 import './index.scss'
 
 export const Store = () => {
     return <>
+    <Authorized>
     <Navbar />
     <Placeholder>
         <section className="store">
@@ -15,5 +16,6 @@ export const Store = () => {
             </div>
         </section>
     </Placeholder>
+    </Authorized>
     </>
 }

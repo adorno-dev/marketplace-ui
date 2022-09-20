@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { Navbar, Pagination, Placeholder } from "../../../components"
+import { Authorized, Navbar, Pagination, Placeholder } from "../../../components"
 import { Product } from "../../../models"
 
 import './index.scss'
@@ -22,6 +22,7 @@ export const Products = () => {
         navigate("/admin/products/new")
     }
     return <>
+    <Authorized>
     <Navbar />
     <Placeholder>
         <section id="products">
@@ -54,5 +55,6 @@ export const Products = () => {
             <Pagination />
         </section>
     </Placeholder>
+    </Authorized>
     </>
 }

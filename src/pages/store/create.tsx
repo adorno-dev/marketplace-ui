@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom"
-import { ImageBrowser, ImageViewer, Navbar, Placeholder } from "../../components"
+import { Authorized, ImageBrowser, ImageViewer, Navbar, Placeholder } from "../../components"
 
 import './create.scss'
 
 export const NewStore = () => {
     return <>
+    <Authorized>
     <Navbar />
     <Placeholder>
         <form id="store">
@@ -24,5 +25,6 @@ export const NewStore = () => {
             </div>
         </form>
     </Placeholder>
+    </Authorized>
     </>
 }

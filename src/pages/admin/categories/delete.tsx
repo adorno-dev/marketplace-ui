@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom"
-import { Navbar, Placeholder } from "../../../components"
+import { Authorized, Navbar, Placeholder } from "../../../components"
 
 import './delete.scss'
 
@@ -7,6 +7,7 @@ export const DeleteCategory = () => {
     const {id} = useParams()
     const category = {id, parent: "Parent Category #1", name: "Category #1"}
     return <>
+    <Authorized>
     <Navbar />
     <Placeholder>
         <div id="delete-category">
@@ -24,5 +25,6 @@ export const DeleteCategory = () => {
             </span>
         </div>
     </Placeholder>
+    </Authorized>
     </>
 }

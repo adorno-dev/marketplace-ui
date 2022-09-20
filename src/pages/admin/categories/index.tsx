@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { Navbar, Pagination, Placeholder } from "../../../components"
+import { Link, Outlet, useNavigate } from "react-router-dom"
+import { Authorized, Navbar, Pagination, Placeholder } from "../../../components"
 import { Category } from "../../../models/category"
 
 import './index.scss'
@@ -21,6 +21,7 @@ export const Categories = () => {
         navigate("/admin/categories/new")
     }
     return <>
+    <Authorized>
     <Navbar />
     <Placeholder>
         <section id="categories">
@@ -55,5 +56,6 @@ export const Categories = () => {
             <Pagination />
         </section>
     </Placeholder>
+    </Authorized>
     </>
 }

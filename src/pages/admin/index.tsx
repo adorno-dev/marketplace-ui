@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import { Navbar, Placeholder } from '../../components'
+import { Link, Outlet } from 'react-router-dom'
+import { Authorized, Navbar, Placeholder } from '../../components'
 
 export * from '.'
 export * from './categories'
@@ -8,6 +8,7 @@ import './index.scss'
 
 export const Admin = () => {
     return <>
+    <Authorized>
     <Navbar />
     <Placeholder>
         <section id="admin">
@@ -19,5 +20,6 @@ export const Admin = () => {
             </div>
         </section>
     </Placeholder>
+    </Authorized>
     </>
 }

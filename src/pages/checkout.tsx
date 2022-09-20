@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import { Navbar, Placeholder } from '../components'
+import { Authorized, Navbar, Placeholder } from '../components'
 import { CartItem } from '../models/cart-item'
 
 import './checkout.scss'
@@ -19,6 +19,7 @@ export const Checkout = () => {
         navigate("/checkout-completed")
     }
     return <>
+    <Authorized>
     <Navbar />
     <Placeholder>
         <section className="checkout">
@@ -71,5 +72,6 @@ export const Checkout = () => {
             
         </section>
     </Placeholder>
+    </Authorized>
     </>
 }

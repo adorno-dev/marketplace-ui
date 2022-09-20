@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { Navbar, Pagination, Placeholder } from "../components"
+import { Authorized, Navbar, Pagination, Placeholder } from "../components"
 import { Product } from "../models"
 
 import './favorites.scss'
@@ -14,7 +14,8 @@ export const Favorites = () => {
         {id: 5, name: "COLDRE KYDEX IWB INVICTUS TAURUS SÉRIE 100", store: "A4U Store", reviews: 0, price: 1000.00 }
     ])
     return <>
-        <Navbar />
+    <Authorized>
+    <Navbar />
         <Placeholder>
             <section className="favorites">
                 <h2>My Favorites</h2>
@@ -46,5 +47,6 @@ export const Favorites = () => {
                 <Pagination />
             </section>
         </Placeholder>
+    </Authorized>
     </>
 }

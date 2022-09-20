@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { Navbar, Placeholder } from "../components"
+import { Authorized, Navbar, Placeholder } from "../components"
 
 import './checkout-completed.scss'
 
@@ -9,6 +9,7 @@ export const CheckoutCompleted = () => {
         navigate("/")
     }
     return <>
+    <Authorized>
     <Navbar />
     <Placeholder>
         <section className="checkout-completed">
@@ -19,5 +20,6 @@ export const CheckoutCompleted = () => {
             <button onClick={marketplace}>Return to marketplace</button>
         </section>
     </Placeholder>
+    </Authorized>
     </>
 }
