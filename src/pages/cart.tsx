@@ -1,28 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Authorized, Navbar, Placeholder } from '../components'
-import { CartItem } from '../models/cart-item'
+import { CartResponse } from '../contracts/responses/cart-response'
+import { CartService } from '../services/cart-service'
 
 import './cart.scss'
 
 export const Cart = () => {
     const navigate = useNavigate()
-    const [cartItems, setCartItems] = useState<CartItem[]>([
-        {id: 1, description: "Pistola Taurus G3c T.O.R.O. - 9x19mm", store: "A4U Store", quantity: 1, price: 1000.55 },
-        {id: 2, description: "Pistola Taurus .9MM TS9/17 4\" CAFO",  store: "A4U Store", quantity: 2, price: 1000.00 },
-        {id: 3, description: "Revólver Taurus .357 MAG RT608/8 6,5\" INAB", store: "A4U Store", quantity: 1, price: 1000.00 },
-        {id: 4, description: "Pistola Beretta APX", store: "A4U Store", quantity: 3, price: 1000.00 },
-        {id: 5, description: "COLDRE KYDEX IWB INVICTUS TAURUS SÉRIE 100", store: "A4U Store", quantity: 5, price: 1000.00 }
-    ])
-    const updateQuantity = (id: number, quantity: number) => {
-        const newState = cartItems.map(obj => {
+    const [cart, setCart] = useState<CartResponse>()
+    const updateQuantity = (id: string, quantity: number) => {
+        const newState = cart?.items.map(obj => {
             return obj.id === id ? {...obj, quantity: quantity > 0 ? quantity : 1} : obj
         })
-        setCartItems(newState)
+        // setCartItems(newState)
     }
     const checkout = () => {
         navigate("/checkout")
     }
+    useEffect(() => {
+        CartService.getCarts()
+                   .then(res => setCart(res.data))
+    }, [])
     return <>
     <Authorized>
     <Navbar />
@@ -32,7 +31,7 @@ export const Cart = () => {
                 <p>There's no products added in your cart. Except fake ones.</p>
                 <ul>
                 {
-                    cartItems.map(m =>
+                    cart?.items.map(m =>
                         <li key={m.id}>
                             <img className="image" src="/public/assets/products/product-1.webp" />
                             <Link className="description" to="/">{m.description}</Link>
@@ -54,7 +53,7 @@ export const Cart = () => {
                 </ul>
                 <div className="total">
                     <div>TOTAL</div>
-                    <div>$ {cartItems.reduce((sum, items) => sum + (items.quantity * items.price), 0)}</div>
+                    <div>$ {cart?.items.reduce((sum, items) => sum + (items.quantity * items.price), 0)}</div>
                 </div>
                 <div >
                     <button onClick={checkout}>Check out</button>

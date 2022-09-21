@@ -105,10 +105,14 @@ ul.products {
         }
         a.product {
             display: inline-block;
-            height: 30px;
+            height: 32px;
             width: 95%;
             font-size: 0.85em;
             font-weight: bold;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            // white-space: nowrap;
         }
         a.store {
             display: inline-block;

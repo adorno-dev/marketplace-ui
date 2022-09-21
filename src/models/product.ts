@@ -1,9 +1,16 @@
 export type Product = {
-    id: number,
+    id: string,
     name: string,
     description?: string,
     store: string,
     reviews: number,
     price: number,
-    quantity?: number
+    stock?: number
 }
+
+// id: string,
+// name: string,
+// description: string,
+// price: number,
+// stock: number,
+// favorite: boolean,

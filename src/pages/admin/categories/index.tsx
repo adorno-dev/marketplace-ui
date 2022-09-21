@@ -1,32 +1,29 @@
-import { useState } from "react"
-import { Link, Outlet, useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import { Authorized, Navbar, Pagination, Placeholder } from "../../../components"
-import { Category } from "../../../models/category"
+import { CategoryResponse } from "../../../contracts/responses/category-response"
+import { Paginated } from "../../../contracts/responses/paginated-response"
+import { CategoryService } from "../../../services/category-service"
 
 import './index.scss'
 
 export const Categories = () => {
     const navigate = useNavigate()
-    const [categories, setCategories] = useState<Category[]>([
-        {id: 1000, name: "Category #1"},
-        {id: 1001, name: "Category #2"},
-        {id: 1002, name: "Category #3"},
-        {id: 1003, name: "Category #4", parentId: 1000},
-        {id: 1004, name: "Category #5", parentId: 1000},
-        {id: 1005, name: "Category #6"},
-        {id: 1006, name: "Category #7"},
-        {id: 1007, name: "Category #8"}
-    ])
+    const [categories, setCategories] = useState<Paginated<CategoryResponse>>()
     const createHandler = () => {
         navigate("/admin/categories/new")
     }
+    useEffect(() => {
+        CategoryService.getCategories()
+                       .then(res => setCategories(res.data))
+    }, [])
     return <>
     <Authorized>
     <Navbar />
     <Placeholder>
         <section id="categories">
             <h2>Categories</h2>
-            <p>There are {categories.length} categories available.</p>
+            <p>There are {categories?.totalItems} categories available.</p>
             <div>
                 <Link to="/admin">Back to Admin</Link>
                 <button onClick={createHandler}>Create</button>
@@ -37,12 +34,12 @@ export const Categories = () => {
                     <b className="parent">PARENT</b>
                 </li>
             {
-                categories.map(m =>
+                categories?.items.map(m =>
                     <li key={m.id}>
                         <span>{m.name}</span>
                         <span className="parent">
                             {
-                                m.parentId && categories.find(p => p.id === m.parentId)?.name
+                                m.parentId && categories.items.find(p => p.id === m.parentId)?.name
                             }
                         </span>
                         <div>

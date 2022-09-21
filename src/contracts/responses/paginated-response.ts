@@ -1,5 +1,4 @@
-
-export interface Pagination<T> {
+export interface Paginated<T> {
     items: T[],
     totalItems: number,
     pageIndex: number,

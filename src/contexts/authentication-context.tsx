@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useMemo, useState } from "react";
+import { createContext, ReactNode, useEffect, useMemo, useState } from "react";
 import { ForgotPasswordRequest } from "../contracts/requests/forgot-password-request";
 import { SignInRequest } from "../contracts/requests/signin-request";
 import { SignUpRequest } from "../contracts/requests/signup-request";
@@ -39,7 +39,7 @@ export const AuthenticationProvider = ({children}: {children: ReactNode}) => {
     }
     const isAuthenticated = () => token !== ""
 
-    useMemo(() => {
+    useEffect(() => {
         const storedToken = localStorage.getItem("t")
         if (storedToken)
             setToken(storedToken)

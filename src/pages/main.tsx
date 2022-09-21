@@ -1,42 +1,18 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Navbar, Placeholder } from "../components"
-import { Pagination } from "../contracts/responses/pagination-response"
+import { Paginated } from "../contracts/responses/paginated-response"
 import { ProductResponse } from "../contracts/responses/product-response"
-import { Product } from "../models"
 import { ProductService } from "../services/product-service"
 
 import './main.scss'
 
 export const Main = () => {
-    const service = ProductService
-    const [products, setProducts] = useState<Pagination<ProductResponse>>()
-
-    // const [products, setProducts] = useState<Product[]>([
-    //     {id: 1,name: "Product #1",description: "Product #1 description",store: "A4U Store",reviews: 1,price: 5000.00},
-    //     {id: 2,name: "Product #2",description: "Product #2 description",store: "A4U Store",reviews: 1,price: 5000.00},
-    //     {id: 3,name: "Product #3",description: "Product #3 description",store: "A4U Store",reviews: 1,price: 5000.00},
-    //     {id: 4,name: "Product #4",description: "Product #4 description",store: "A4U Store",reviews: 1,price: 5000.00},
-    //     {id: 5,name: "Product #5",description: "Product #5 description",store: "A4U Store",reviews: 1,price: 5000.00},
-    //     {id: 6,name: "Product #6",description: "Product #6 description",store: "A4U Store",reviews: 1,price: 5000.00},
-    //     {id: 7,name: "Product #7",description: "Product #7 description",store: "A4U Store",reviews: 1,price: 5000.00},
-    //     {id: 8,name: "Product #8",description: "Product #8 description",store: "A4U Store",reviews: 1,price: 5000.00},
-    //     {id: 9,name: "Product #9",description: "Product #9 description",store: "A4U Store",reviews: 1,price: 5000.00},
-    // ])
-
-    const getProducts = () => {
-        const asyncGetProducts = async () => {
-            const response = await service.getProducts()
-            setProducts(response.data as Pagination<ProductResponse>)
-        }
-
-        asyncGetProducts()
-    }
+    const [products, setProducts] = useState<Paginated<ProductResponse>>()
 
     useEffect(() => {
-        getProducts()
-
-        console.log(products)
+        ProductService.getProducts()
+                      .then(res => setProducts(res.data))
     }, [])
 
     return <>
@@ -45,13 +21,13 @@ export const Main = () => {
             <h2>Welcome to Marketplace</h2>
             <p>Please don't read this document until we finished this project. 
                 So you could've better experience.</p>
-            {/* <ul className="products">
+            <ul className="products">
                 {
-                    products.map(p => 
+                    products?.items.map(p => 
                         <li key={p.id}>
                             <img src="/public/assets/products/product-1.webp" />
-                            <Link className="product" to="/product">DEMO (AMD) Poppy (wear to unpack)</Link>
-                            <Link className="store" to="/store">Apple May Designs (AMD)</Link>
+                            <Link className="product" to="/product">{p.name}</Link>
+                            <Link className="store" to="/store">{p.store.name}</Link>
                             <div className="split">
                                 <span className="reviews">
                                     <i className="fa-sharp fa-solid fa-star"></i>
@@ -61,12 +37,12 @@ export const Main = () => {
                                     <i className="fa-sharp fa-solid fa-star"></i>
                                     <Link to="reviews">0 Reviews</Link>
                                 </span>
-                                <span className="price">$ 1000</span>
+                                <span className="price">$ {p.price}</span>
                             </div>
                         </li>
                     )
                 }
-            </ul> */}
+            </ul>
         </Placeholder>
     </>
 }
