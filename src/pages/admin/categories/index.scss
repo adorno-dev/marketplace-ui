@@ -11,7 +11,7 @@ section#categories {
             display: grid;
 
             @media only screen and (min-width: 900px) {
-                grid-template-columns: minmax(115px, 795px) minmax(115px, 795px) 130px;
+                grid-template-columns: minmax(115px, 795px) minmax(115px, 795px) 150px;
                 .parent {
                     display: unset;
                 }
