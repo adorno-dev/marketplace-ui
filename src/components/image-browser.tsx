@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { ChangeEventHandler, useEffect, useRef, useState } from 'react'
 import './image-browser.scss'
 
 type Props = {
     name: string,
     placeholder?: string,
-    multiple?: boolean
+    multiple?: boolean,
 }
 
 export const ImageBrowser = (props: Props) => {

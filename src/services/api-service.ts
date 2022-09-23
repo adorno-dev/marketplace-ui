@@ -13,7 +13,7 @@ api.interceptors.request.use((config) => {
 
 api.interceptors.response.use(undefined, (exception: AxiosError) => {
     if (exception.response?.status === 401)
-        console.log(exception.response)
+        localStorage.removeItem("t")
 })
 
 export const apiService = {
