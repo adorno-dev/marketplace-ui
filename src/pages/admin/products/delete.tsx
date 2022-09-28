@@ -1,11 +1,25 @@
-import { Link, useParams } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { Authorized, Navbar, Placeholder } from "../../../components"
+import { Product } from "../../../models"
+import { productService } from "../../../services/product-service"
 
 import './delete.scss'
 
 export const DeleteProduct = () => {
+    const navigate = useNavigate()
     const {id} = useParams()
-    const product = {id, name: "Product #1", description: "Product description #1", price: 100.00, quantity: 1, store: "A4U Store", reviews: 0}
+    const [product, setProduct] = useState<Product>()
+    const deleteProduct = () => {
+        id && 
+        productService.deleteProduct(id)
+        navigate("/admin/products")
+    }
+    useEffect(() => {
+        id &&
+        productService.getProduct(id)
+            .then(res => setProduct(res.data))
+    }, [])
     return <>
     <Authorized>
     <Navbar />
@@ -15,17 +29,17 @@ export const DeleteProduct = () => {
             <p>Are you sure want delete the product below?</p>
             <div>
                 <span>Name</span>
-                <span>{product.name}</span>
+                <span>{product?.name}</span>
                 <span>Description</span>
-                <span>{product.description}</span>
+                <span>{product?.description}</span>
                 <span>Store</span>
-                <span>{product.store}</span>
+                <span>{product?.store.name}</span>
                 <span>Price</span>
-                <span>$ {product.price}</span>
+                <span>$ {product?.price}</span>
             </div>
             <span>
                 <Link to="/admin/products">Back to Products</Link>
-                <button>Confirm</button>
+                <button onClick={deleteProduct}>Confirm</button>
             </span>
         </div>
     </Placeholder>

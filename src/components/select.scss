@@ -14,6 +14,7 @@ div.select {
     label {
         padding: 0 15px;
         color: lightblue;
+        user-select: none;
     }
 
     ul {
@@ -44,6 +45,7 @@ div.select {
         li {
             padding: 0 15px;
             line-height: 35px;
+            user-select: none;
             &:hover {
                 background: rgba(255, 255, 255, 0.05) !important;
                 color: lightblue;

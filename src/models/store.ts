@@ -5,5 +5,6 @@ export type Store = {
     politics: string,
     url: string,
     logo: string,
-    banner: string
+    banner: string,
+    categories?: string[]
 }

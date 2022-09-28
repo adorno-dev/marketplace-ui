@@ -10,9 +10,11 @@ import { EditProduct } from "./pages/admin/products/edit"
 import { CheckoutCompleted } from "./pages/checkout-completed"
 import { AuthenticationProvider } from "./contexts/authentication-context"
 import { NewStore } from "./pages/store/create"
+import { ViewProduct } from "./pages/view-product"
 
 export const AppRoutes = () => {
     return (
+      // <React.StrictMode>
         <BrowserRouter>
         <AuthenticationProvider>
           <Routes>
@@ -27,6 +29,7 @@ export const AppRoutes = () => {
             <Route path='/checkout-completed' element={<CheckoutCompleted />} />
             <Route path='/store' element={<Store />} />
             <Route path='/store/new' element={<NewStore />} />
+            <Route path='/products/:id' element={<ViewProduct />} />
             
             <Route path='/admin' element={<Admin />} />
             <Route path='/admin/categories' element={<Categories />} />
@@ -41,5 +44,6 @@ export const AppRoutes = () => {
           </Routes>
         </AuthenticationProvider>
       </BrowserRouter>
+      // </React.StrictMode>
     )
 }

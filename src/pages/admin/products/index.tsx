@@ -1,22 +1,30 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { Authorized, Navbar, Pagination, Placeholder } from "../../../components"
 import { Paginated } from "../../../contracts/responses/paginated-response"
 import { ProductResponse } from "../../../contracts/responses/product-response"
-import { ProductService } from "../../../services/product-service"
+import { productService } from "../../../services/product-service"
 
 import './index.scss'
 
 export const Products = () => {
+    const currency = Intl.NumberFormat("en-US", {style: "currency", currency: "USD"});
     const navigate = useNavigate()
     const [products, setProducts] = useState<Paginated<ProductResponse>>()
     const createHandler = () => {
         navigate("/admin/products/new")
     }
-    useEffect(() => {
-        ProductService.getProducts()
+    const paginate = (pageIndex: number, pageSize?: number) => {
+        productService.getProducts({pageIndex})
+                       .then(res => setProducts(res.data))
+    }
+    const fetchData = useCallback(()=>{
+        productService.getProducts({pageIndex: 1})
                       .then(res => setProducts(res.data))
     }, [])
+    useEffect(() => {
+        fetchData()
+    }, [fetchData])
     return <>
     <Authorized>
     <Navbar />
@@ -39,7 +47,7 @@ export const Products = () => {
                     <li key={m.id}>
                         <span>{m.name}</span>
                         <span className="columns">{m.store.name}</span>
-                        <span className="columns">$ {m.price}</span>
+                        <span className="columns">{currency.format(m.price).replace("$", "$ ")}</span>
                         <div>
                             <Link to={{pathname: `/admin/products/edit/${m.id}`}}>EDIT<i className="fa-solid fa-pen-to-square"></i></Link>
                             <Link to={{pathname: `/admin/products/delete/${m.id}`}}>DELETE<i className="fa-solid fa-trash"></i></Link>
@@ -48,7 +56,7 @@ export const Products = () => {
                 )
             }
             </ul>
-            <Pagination />
+            <Pagination pageIndex={products?.pageIndex} pageCount={products?.pageCount} paginate={paginate} />
         </section>
     </Placeholder>
     </Authorized>

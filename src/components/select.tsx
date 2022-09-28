@@ -1,77 +1,42 @@
-type Item = {
+export type SelectItem = {
     id: string,
     text: string
 }
 
 type Props = {
-    items: Item[],
+    items: SelectItem[],
     name: string,
     text: string,
     value?: string
 }
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import './select.scss'
 
 export const Select = (props: Props) => {
     const component = useRef<HTMLDivElement>(null)
-    const setVisible = () => {
-        component.current?.addEventListener("click", (e) => {
-            e.stopPropagation()
-            if (component === null)
-                return
-            document.querySelectorAll(".active")
-                    .forEach(control => {
-                        if (!control.contains(component.current))
-                             control.classList.remove("active")
-                    })
-            window.onclick = () => {
-                window.onclick = null
-                component.current?.classList.remove("active")
-            }
-            component.current?.classList.toggle("active")
-        })
-    }
-    const setSelected = () => {
-        const items = component.current?.querySelectorAll<HTMLLIElement>("ul li")
-        const input = component.current?.querySelector<HTMLInputElement>("input")
-        const label = component.current?.querySelector<HTMLLabelElement>("label")
-        items?.forEach(item => {
-            item.addEventListener("click", () => {
-                const value = item.getAttribute("value")
-                component.current?.querySelectorAll("ul li.selected")
-                          .forEach(s => s.classList.remove("selected"))
-                if (input !== undefined && input !== null && label !== undefined && label !== null) {
-                    if (value !== null) {
-                        input.value = value
-                        item.className = "selected"
-                        label.innerText = item.innerText
-                    } else {
-                        input.value = ""
-                        label.innerText = props.text
-                    }
-                }
-            })
-            
-            if (label !== undefined && label !== null && props.value === item.value.toString()) {
-                item.className = "selected"
-                label.innerText = item.innerText
+    const [active, setActive] = useState<boolean>()
+    const [text, setText] = useState<string>()
+    const [value, setValue] = useState<string>()
+    useEffect(()=>{
+        component.current?.addEventListener("click", (e: any) => {
+            e.stopPropagation();
+            setActive(toggle => ! toggle)
+            if (e.target.value !== undefined) {
+                setText(e.target.innerText)
+                setValue(e.target.value)
             }
         })
-    }
-    useEffect(() => {
-        setVisible()
-        setSelected()
     }, [])
     return <>
-    <div className="select" ref={component}>
-        <input type="hidden" name={props.name} value={props.value} />
-        <label>{props.text}</label>
+    <div ref={component} className={`select ${active ? "active": ""}`}>
+        <input type="hidden" name={props.name} value={`${value || props.value}`} />
+        <label>{text || props.items.find(p => p.id == (value || props.value))?.text || props.text}</label>
         <i className="fa-solid fa-angle-down"></i>
         <ul>
-            <li className="disabled">{props.text}</li>
-            {props.items.map(m => <li key={m.id} value={m.id}>{m.text}</li>)}
+            <li key={0} className="disabled" value="0">{props.text}</li>
+            {props.items.map(m => <li key={m.id} value={m.id} className={m.id == value ? "selected": ""}>{m.text}</li>)}
         </ul>
     </div>
     </>

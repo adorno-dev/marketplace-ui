@@ -7,6 +7,20 @@ const getCarts = async () => {
         .catch(err => err.response as ApiResponse)
 }
 
-export const CartService = {
-    getCarts
+const addItem = async (productId: string) => {
+    return await apiService.api.post("carts/add-item", { productId })
+        .then(res => res as ApiResponse)
+        .catch(err => err.response as ApiResponse)
+}
+
+const removeItem = async (cartItemId: string) => {
+    return await apiService.api.post("carts/remove-item", { cartItemId })
+        .then(res => res as ApiResponse)
+        .catch(err => err.response as ApiResponse)
+}
+
+export const cartService = {
+    getCarts,
+    addItem,
+    removeItem
 }

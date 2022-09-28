@@ -1,5 +1,5 @@
-import { CategoryResponse } from "./category-response";
-import { StoreResponse } from "./store-response";
+import { Category } from "../../models/category";
+import { Store } from "../../models/store";
 
 export interface ProductResponse {
     id: string,
@@ -10,6 +10,8 @@ export interface ProductResponse {
     price: number,
     stock: number,
     favorite: boolean,
-    category: CategoryResponse,
-    store: StoreResponse
+    screenshoot?: string,
+    screenshoots?: string[],
+    category: Category,
+    store: Store
 }

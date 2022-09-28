@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import './image-viewer.scss'
 
 type Props = {
@@ -16,12 +16,32 @@ export const ImageViewer = (props: Props) => {
         const images = imageList?.querySelectorAll("img")
         images?.forEach(img => imageList?.removeChild(img))
     }
+    const setImageViewer = () => {
+        const imageList = component.current?.querySelector("div")
+        const images = component.current?.parentNode?.querySelectorAll(".image-browser img")
+        images?.forEach(img => {
+            const imageClone = img.cloneNode()
+            imageClone.addEventListener("click", (ve:any) => {
+                if (image.current !== null) {
+                    image.current.src = ve.target.src
+                }
+            })
+            imageList?.appendChild(imageClone)
+        })
+        images?.forEach(img => img.addEventListener("click", (pe: any) => {
+            if (image.current !== null) {
+                image.current.setAttribute("data-file", pe.target.getAttribute("data-file"))
+                image.current.src = pe.target.src
+                component.current?.classList.add("active")
+            }
+        }))
+    }
     useEffect(() => {
         const input = document.querySelector<HTMLInputElement>(`input[type=file]#${props.name}`)
         const imageList = component.current?.querySelector("div")
+        setImageViewer()
         input?.addEventListener("change", (ie: any) => {
             clearImages()
-
             for (let i = 0; i < ie.target.files.length; i++) {
                  let reader = new FileReader()
                  let viewer = document.createElement("img")
@@ -35,8 +55,6 @@ export const ImageViewer = (props: Props) => {
                  reader.readAsDataURL(ie.target.files[i])
                  imageList?.appendChild(viewer)
             }
-
-            
             input?.parentNode?.querySelectorAll<HTMLImageElement>("img")
                 .forEach(img => img.addEventListener("click", (pe: any) => {
                     
@@ -47,7 +65,7 @@ export const ImageViewer = (props: Props) => {
                     }
                 }))
         })
-    }, [])
+    }, [setImageViewer])
     return <>
     <section className="image-viewer" ref={component}>
         <i className="fa-solid fa-x" onClick={close}></i>

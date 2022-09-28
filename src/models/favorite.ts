@@ -3,5 +3,6 @@ export type Favorite = {
     name: string,
     description: string,
     store: string,
-    price: number
+    price: number,
+    screenshoot?: string
 }

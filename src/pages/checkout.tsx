@@ -3,18 +3,19 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { Authorized, Navbar, Placeholder } from '../components'
 import { CartResponse } from '../contracts/responses/cart-response'
-import { CartService } from '../services/cart-service'
+import { cartService } from '../services/cart-service'
 
 import './checkout.scss'
 
 export const Checkout = () => {
+    const currency = Intl.NumberFormat("en-US", {style: "currency", currency: "USD"});
     const navigate = useNavigate()
     const [cart, setCart] = useState<CartResponse>()
     const checkout = () => {
         navigate("/checkout-completed")
     }
     useEffect(() => {
-        CartService.getCarts()
+        cartService.getCarts()
                    .then(res => setCart(res.data))
     }, [])
     return <>
@@ -31,8 +32,8 @@ export const Checkout = () => {
                         <li key={m.id}>
                             <div>{m.description}</div>
                             <div>
-                                <span>(Qty x Unit): {m.quantity} x $ {m.price}</span>
-                                <b>$ {m.price}</b>
+                                <span>(Qty x Unit): {m.quantity} x {currency.format(m.price).replace("$", "$ ")}</span>
+                                <b>{currency.format(m.price).replace("$", "$ ")}</b>
                             </div>
                         </li>
                     )
@@ -40,7 +41,13 @@ export const Checkout = () => {
                 </ul>
                 <div className="total">
                     <div>TOTAL</div>
-                    <div>$ {cart?.items.reduce((sum, items) => sum + (items.quantity * items.price), 0)}</div>
+                    {/* <div>{cart?.items.reduce((sum, items) => sum + (items.quantity *  items.price), 0)}</div> */}
+                    <div>
+                        {
+                            currency.format(cart?.items.reduce((sum, items) => sum + (items.quantity *  items.price), 0) ?? 0)
+                                    .replace("$", "$ ")
+                        }
+                    </div>
                 </div>
             </div>
 

@@ -1,12 +1,18 @@
 import { ApiResponse } from "../types"
 import { apiService } from "./api-service"
 
-const getFavorites = async () => {
+type Props = {
+    pageIndex?: number,
+    pageSize?: number
+}
+
+const getFavorites = async (props?: Props) => {
+    const paginated = props?.pageIndex ? `pages/${props.pageIndex}${props.pageIndex && props.pageSize ? `/${props.pageSize}` : ""}`:""
     return await apiService.api.get("favorites/pages")
         .then(res => res as ApiResponse)
         .catch(err => err.response as ApiResponse)
 }
 
-export const FavoriteService = {
+export const favoriteService = {
     getFavorites
 }

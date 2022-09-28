@@ -1,7 +1,9 @@
 export type CartItem = {
-    id: number,
+    id: string,
+    productId: string,
     description: string,
     store: string,
     price: number,
-    quantity: number
+    quantity: number,
+    screenshoot?: string
 }

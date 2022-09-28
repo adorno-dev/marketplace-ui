@@ -5,6 +5,7 @@ type Props = {
     name: string,
     placeholder?: string,
     multiple?: boolean,
+    images?: string[]
 }
 
 export const ImageBrowser = (props: Props) => {
@@ -33,7 +34,11 @@ export const ImageBrowser = (props: Props) => {
     <span className="image-browser" ref={component}>
         <input type="file" id={props.name} name={props.name} multiple={props.multiple} ref={inputFile} />
         <i className="fa-solid fa-plus" onClick={clickHandler}></i>
-        { visible && <span>{props.placeholder}</span> }
+
+        { (visible && props.images === undefined) && <span>{props.placeholder}</span> }
+
+        {props.images?.map(img => <img key={img} src={img} />)}
+
     </span>
     </>
 }

@@ -11,6 +11,10 @@ section.pagination {
         border-right: 1px solid #313131;
     }
 
+    a.active {
+        color: #fff !important;
+    }
+
     a:first-child {
         border-left: 1px solid #313131;
     }

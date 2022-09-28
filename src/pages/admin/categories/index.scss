@@ -18,7 +18,7 @@ section#categories {
             }
 
             @media only screen and (max-width: 900px) {
-                grid-template-columns: auto 130px;
+                grid-template-columns: auto 140px;
                 .parent {
                     display: none;
                 }
@@ -39,6 +39,10 @@ section#categories {
                 font-weight: bold;
                 i {padding-left: 5px;}
                 a {margin-right: 10px;}
+            }
+
+            &:hover {
+                color: rgb(160, 160, 160)
             }
         }
     }

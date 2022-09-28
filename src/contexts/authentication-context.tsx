@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useMemo, useState } from "react";
+import { createContext, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { ForgotPasswordRequest } from "../contracts/requests/forgot-password-request";
 import { SignInRequest } from "../contracts/requests/signin-request";
 import { SignUpRequest } from "../contracts/requests/signup-request";
@@ -38,12 +38,14 @@ export const AuthenticationProvider = ({children}: {children: ReactNode}) => {
         return result.status === 200
     }
     const isAuthenticated = () => token !== ""
-
-    useEffect(() => {
+    const setStoredToken = useCallback(()=>{
         const storedToken = localStorage.getItem("t")
         if (storedToken)
             setToken(storedToken)
     }, [])
+    useEffect(() => {
+        setStoredToken()
+    }, [setStoredToken])
 
     return (
         <AuthenticationContext.Provider value={{token, signIn, signUp, signOut, forgotPassword, isAuthenticated}}>
