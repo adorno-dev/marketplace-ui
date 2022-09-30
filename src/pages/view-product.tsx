@@ -22,12 +22,12 @@ export const ViewProduct = () => {
                 productService.unfavorite(product.id) :
                 productService.favorite(product?.id)
     }
-    const addToCart = () => {
-        product?.id && cartService.addItem(product.id)
+    const addToCart = async () => {
+        product?.id && await cartService.addItem(product.id)
         fetchData()
     }
-    const removeFromCart = () => {
-        product?.id && cartService.removeItem(product.id)
+    const removeFromCart = async () => {
+        product?.id && await cartService.removeItem(product.id)
         fetchData()
     }
     useEffect(()=>{
@@ -48,7 +48,7 @@ export const ViewProduct = () => {
         </div>
         <div>
             <h2>{product?.price && currency.format(product.price).replace("$", "$ ")}</h2>
-            <button onClick={addToCart}>Add To Cart</button>
+            {! product.cart && <button onClick={addToCart}>Add To Cart</button>}
             <button>Buy Now</button>
             <button onClick={favorite}>{product?.favorite ? "Unfavorite" : "Favorite"}</button>
             <span />

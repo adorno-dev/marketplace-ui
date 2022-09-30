@@ -42,6 +42,7 @@ export const EditProduct = () => {
             <p>Complete all required fields to update this product.</p>
 
             <Select items={categories} name="categoryId" text="Empty Category" value={`${product?.category?.id}`} />
+            <input type="hidden" name="storeId" value={product?.store?.id || ''} />
             <input type="hidden" name="id" value={product?.id || ''} />
             <input type="text" name="name" placeholder="Name" value={product?.name || ''} onChange={(e)=>setProduct({...product, name: e.target.value})} />
             <div>

@@ -38,14 +38,11 @@ export const AuthenticationProvider = ({children}: {children: ReactNode}) => {
         return result.status === 200
     }
     const isAuthenticated = () => token !== ""
-    const setStoredToken = useCallback(()=>{
+    useEffect(() => {
         const storedToken = localStorage.getItem("t")
         if (storedToken)
             setToken(storedToken)
-    }, [])
-    useEffect(() => {
-        setStoredToken()
-    }, [setStoredToken])
+    }, [token])
 
     return (
         <AuthenticationContext.Provider value={{token, signIn, signUp, signOut, forgotPassword, isAuthenticated}}>

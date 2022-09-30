@@ -40,7 +40,11 @@ export const Cart = () => {
         <Placeholder>
             <section className="cart">
                 <h2>My Cart</h2>
-                <p>There's no products added in your cart. Except fake ones.</p>
+                {
+                    cart?.items && cart.items.length  > 0 ?
+                    <p>Your cart have <b>{cart.items.length}</b> product(s) added.</p>:
+                    <p>There's no products added in this cart.</p>
+                }
                 <ul>
                 {
                     cart?.items &&
@@ -70,7 +74,7 @@ export const Cart = () => {
                         {
                             currency.format(
                                 cart?.items && cart?.items.reduce((sum, items) => sum + (items.quantity * items.price), 0) || 0)
-                                    .replace("$", "$ ")
+                                     .replace("$", "$ ")
                         }
                     </div>
                 </div>

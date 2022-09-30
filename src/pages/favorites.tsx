@@ -15,10 +15,10 @@ export const Favorites = () => {
         favoriteService.getFavorites({pageIndex})
                        .then(res => res !== undefined && setFavorites(res.data))        
     }, [])
-    const unfavorite = (e: any) => {
+    const unfavorite = async (e: any) => {
         e.preventDefault()
         const id = e.currentTarget.getAttribute("data-id")
-        productService.unfavorite(id)
+        await productService.unfavorite(id)
         fetchData()
     }
     useEffect(() => {

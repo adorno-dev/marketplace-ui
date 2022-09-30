@@ -5,6 +5,7 @@ div.view-product {
     align-self: center;
     margin: 0 auto;
     grid-template-columns: 80% 20%;
+    white-space: pre-wrap;
 
     img {
         object-fit: cover;
