@@ -90,12 +90,10 @@ ul.products {
         overflow: hidden;
 
         img {
-
             border: 1px solid transparent;
             outline: none;
 
             object-fit: cover;
-            // width: 100%;
             min-width: 200px;
             height: 165px;
         }

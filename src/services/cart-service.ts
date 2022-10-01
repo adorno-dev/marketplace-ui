@@ -1,8 +1,15 @@
 import { ApiResponse } from "../types"
 import { apiService } from "./api-service"
 
-const getCarts = async () => {
-    return await apiService.api.get("carts")
+type Props = {
+    pageIndex?: number,
+    pageSize?: number
+}
+
+const getCarts = async (props?: Props) => {
+    const paginated = props?.pageIndex ? `pages/${props.pageIndex}${props.pageIndex && props.pageSize ? `/${props.pageSize}` : ""}`:""
+    console.log(props)
+    return await apiService.api.get(`carts/${paginated}`)
         .then(res => res as ApiResponse)
         .catch(err => err.response as ApiResponse)
 }
@@ -19,8 +26,15 @@ const removeItem = async (cartItemId: string) => {
         .catch(err => err.response as ApiResponse)
 }
 
+const checkout = async (request: any) => {
+    return await apiService.api.post("carts/checkout", request)
+        .then(res => res as ApiResponse)
+        .catch(err => err.response as ApiResponse)
+}
+
 export const cartService = {
     getCarts,
     addItem,
-    removeItem
+    removeItem,
+    checkout
 }

@@ -41,16 +41,9 @@ export const Checkout = () => {
                 </ul>
                 <div className="total">
                     <div>TOTAL</div>
-                    {/* <div>{cart?.items.reduce((sum, items) => sum + (items.quantity *  items.price), 0)}</div> */}
-                    <div>
-                        {
-                            currency.format(cart?.items.reduce((sum, items) => sum + (items.quantity *  items.price), 0) ?? 0)
-                                    .replace("$", "$ ")
-                        }
-                    </div>
+                    <div>{currency.format(cart?.items.reduce((sum, items) => sum + (items.quantity *  items.price), 0) ?? 0).replace("$", "$ ")}</div>
                 </div>
             </div>
-
             <div>
                 <h2>Billing information</h2>
                 <p>Confirm your billing information to complete the check out.</p>

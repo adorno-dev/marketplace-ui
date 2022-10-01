@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Navbar, Placeholder } from "../components"
 import { Product } from "../models"
@@ -8,6 +8,7 @@ import './view-product.scss'
 
 export const ViewProduct = () => {
     const currency = Intl.NumberFormat("en-US", {style: "currency", currency: "USD"});
+    const image = useRef<HTMLImageElement>(null)
     const {id} = useParams()
     const [product, setProduct] = useState<Partial<Product>>()
     const fetchData = useCallback(()=>{
@@ -30,6 +31,9 @@ export const ViewProduct = () => {
         product?.id && await cartService.removeItem(product.id)
         fetchData()
     }
+    const viewImage = async (e: any) => {
+        image.current?.setAttribute("src", e.currentTarget.src)
+    }
     useEffect(()=>{
         fetchData()
     }, [fetchData])
@@ -42,8 +46,11 @@ export const ViewProduct = () => {
         <div>
             <h2>{product?.name}</h2>
             <div>
-                <img src={product?.screenshoots?.at(0) ?? ""} />
-            </div>
+                <div><img ref={image} src={product?.screenshoots?.at(0) ?? ""} /></div>
+                <div>
+                    {product.screenshoots?.map((screenshoot, index) => <img key={index} className="small" src={screenshoot} onClick={viewImage} />)}
+                </div>
+                            </div>
             <p>{product?.description}</p>
         </div>
         <div>

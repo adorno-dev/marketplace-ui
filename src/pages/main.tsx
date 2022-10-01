@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { Navbar, Placeholder } from "../components"
+import { Navbar, Pagination, Placeholder } from "../components"
 import { Paginated } from "../contracts/responses/paginated-response"
 import { ProductResponse } from "../contracts/responses/product-response"
 import { productService } from "../services/product-service"
@@ -10,10 +10,13 @@ import './main.scss'
 export const Main = () => {
     const currency = Intl.NumberFormat("en-US", {style: "currency", currency: "USD"});
     const [products, setProducts] = useState<Paginated<ProductResponse>>()
-    useEffect(() => {
+    const fetchData = useCallback(()=>{
         productService.getProducts({pageIndex: 1, pageSize: 30})
                       .then(res => setProducts(res.data))
     }, [])
+    useEffect(() => {
+        fetchData()
+    }, [fetchData])
     return <>
     <Navbar />
     <Placeholder>
@@ -44,6 +47,7 @@ export const Main = () => {
                 )
             }
         </ul>
+        <Pagination pageIndex={products?.pageIndex} pageCount={products?.pageCount} paginate={fetchData} />
     </Placeholder>
     </>
 }

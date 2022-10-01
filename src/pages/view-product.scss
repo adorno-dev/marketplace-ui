@@ -7,10 +7,28 @@ div.view-product {
     grid-template-columns: 80% 20%;
     white-space: pre-wrap;
 
-    img {
-        object-fit: cover;
-        width: 800px;
-        height: 500px;
+
+    > div:first-child div {
+        display: flex;
+        flex-direction: row;
+        div:first-child {
+            img:first-child {
+                object-fit: cover;
+                width: 800px;
+                height: 500px;
+            }
+        }
+        div:last-child {
+            display: flex;
+            flex-direction: column;
+            img {
+                object-fit: cover;
+                width: 80px;
+                height: 80px;
+                cursor: pointer;
+            }
+        }
+
     }
 
     div {

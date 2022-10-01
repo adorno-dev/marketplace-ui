@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { Authorized, Navbar, Placeholder } from '../components'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Authorized, Navbar, Pagination, Placeholder } from '../components'
 import * as C from '../models/cart'
 import { cartService } from '../services/cart-service'
 
@@ -10,8 +10,8 @@ export const Cart = () => {
     const currency = Intl.NumberFormat("en-US", {style: "currency", currency: "USD"});
     const navigate = useNavigate()
     const [cart, setCart] = useState<Partial<C.Cart>>()
-    const fetchData = useCallback(()=>{
-        cartService.getCarts()
+    const fetchData = useCallback((pageIndex?: number, pageSize?: number)=>{
+        cartService.getCarts({pageIndex})
                    .then(res => res !== undefined && setCart(res.data))
     }, [])
     const updateQuantity = (id: string, quantity: number) => {
@@ -27,12 +27,15 @@ export const Cart = () => {
                          .then(res => res !== undefined && setCart(res.data))
         fetchData()
     }
-    const checkout = () => {
-        navigate("/checkout")
+    const checkout = async () => {
+        const productId = cart?.items?.map(m => m.productId)
+        const quantity = cart?.items?.map(m => m.quantity)
+        
+        await cartService.checkout({productId, quantity}) && navigate("/checkout")
     }
 
     useEffect(() => {
-        fetchData()
+        fetchData(1)
     }, [fetchData])
     return <>
     <Authorized>
@@ -78,6 +81,7 @@ export const Cart = () => {
                         }
                     </div>
                 </div>
+                <Pagination pageIndex={cart?.pageIndex} pageCount={cart?.pageCount} paginate={fetchData} />
                 <div >
                     {cart?.items && <button onClick={checkout}>Check out</button>}
                 </div>

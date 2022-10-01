@@ -42,6 +42,7 @@ export const AuthenticationProvider = ({children}: {children: ReactNode}) => {
         const storedToken = localStorage.getItem("t")
         if (storedToken)
             setToken(storedToken)
+        else signOut()
     }, [token])
 
     return (
