@@ -8,7 +8,6 @@ type Props = {
 
 const getCarts = async (props?: Props) => {
     const paginated = props?.pageIndex ? `pages/${props.pageIndex}${props.pageIndex && props.pageSize ? `/${props.pageSize}` : ""}`:""
-    console.log(props)
     return await apiService.api.get(`carts/${paginated}`)
         .then(res => res as ApiResponse)
         .catch(err => err.response as ApiResponse)

@@ -7,9 +7,10 @@ div#delete-category {
 
     div {
         display: grid;
-        grid-template-columns: 30% auto;
+        grid-template-columns: repeat(2, auto);
         margin: 25px 0;
         min-width: 360px;
+        max-width: 880px;
 
         > :nth-child(odd) {
             text-align: right;

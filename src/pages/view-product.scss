@@ -1,43 +1,59 @@
 div.view-product {
-    width: 80%;
-    display: grid;
-    justify-self: center;
-    align-self: center;
-    margin: 0 auto;
-    grid-template-columns: 80% 20%;
-    white-space: pre-wrap;
+    display: flex;
 
-
-    > div:first-child div {
-        display: flex;
-        flex-direction: row;
-        div:first-child {
-            img:first-child {
-                object-fit: cover;
-                width: 800px;
-                height: 500px;
-            }
-        }
+    @media only screen and (max-width: 880px) {
+        flex-direction: column;
         div:last-child {
-            display: flex;
-            flex-direction: column;
-            img {
-                object-fit: cover;
-                width: 80px;
-                height: 80px;
-                cursor: pointer;
+            margin: 10px 0 0;
+            max-width: unset !important;
+            button {
+                max-width: 415px;
             }
         }
-
     }
 
-    div {
+    margin: 0 auto;
+    max-width: 880px;
+    justify-content: space-between;
+    gap: 0 10px;
+    padding: 10px 0;
+
+    div:first-child {
         display: flex;
         flex-direction: column;
-        gap: 15px;
-        &:last-child {
-            text-align: center;
+        gap: 8px 0;
+        width: 100%;
+        white-space: pre-wrap;
+        > img {
+            object-fit: cover;
+            max-width: 625px;
+            max-height: 400px;
+            height: 400px;
+            width: 625px;
+        }
+
+        div {
+            img {
+                object-fit: cover;
+                width: 48px;
+                height: 48px;
+                margin-right: 10px;
+                cursor: pointer;
+            }    
+        }
+    }
+
+    div:last-child {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 8px 0;
+        text-align: right;
+        min-width: 250px;
+        max-width: 250px;
+        a,
+        button {
+            width: 100%;
         }
     }
 }
-

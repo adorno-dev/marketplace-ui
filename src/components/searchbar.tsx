@@ -35,7 +35,6 @@ export const Searchbar = ({sender}:{sender?:RefObject<HTMLAnchorElement>}) => {
     }
     const searchHandler = (e: any) => {
         e.preventDefault()
-        console.log(text)
     }
     useEffect(() => {
         toggleVisible()

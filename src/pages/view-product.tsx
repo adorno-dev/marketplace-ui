@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Navbar, Placeholder } from "../components"
 import { Product } from "../models"
 import { cartService, productService } from "../services"
@@ -9,7 +9,10 @@ import './view-product.scss'
 export const ViewProduct = () => {
     const currency = Intl.NumberFormat("en-US", {style: "currency", currency: "USD"});
     const image = useRef<HTMLImageElement>(null)
+    const title = useRef<HTMLHeadingElement>(null)
+    const price = useRef<HTMLHeadingElement>(null)
     const {id} = useParams()
+    const navigate = useNavigate()
     const [product, setProduct] = useState<Partial<Product>>()
     const fetchData = useCallback(()=>{
         id && productService.getProduct(id)
@@ -36,33 +39,32 @@ export const ViewProduct = () => {
     }
     useEffect(()=>{
         fetchData()
-    }, [fetchData])
+    }, [fetchData, title.current?.clientHeight])
     return <>
     <Navbar />
     <Placeholder>
     {
-        product &&
         <div className="view-product">
-        <div>
-            <h2>{product?.name}</h2>
             <div>
-                <div><img ref={image} src={product?.screenshoots?.at(0) ?? ""} /></div>
+                <h2 ref={title}>{product?.name}</h2>
+                <img ref={image} src={product?.screenshoots?.at(0) ?? ""} />
                 <div>
-                    {product.screenshoots?.map((screenshoot, index) => <img key={index} className="small" src={screenshoot} onClick={viewImage} />)}
+                {
+                    product?.screenshoots?.map((screenshoot, index) => 
+                        <img key={index} className="small" src={screenshoot} onClick={viewImage} />)
+                }
                 </div>
-                            </div>
-            <p>{product?.description}</p>
+                <p>{product?.description}</p>
+            </div>
+            <div>
+                <h2 ref={price} style={{height: title.current?.clientHeight}}>{product?.price && currency.format(product.price).replace("$", "$ ")}</h2>
+                {! product?.cart && <button onClick={addToCart}>Add To Cart</button>}
+                <button>Buy Now</button>
+                <button onClick={favorite}>{product?.favorite ? "Unfavorite" : "Favorite"}</button>
+                <b>{product?.store?.name}</b>
+                <button onClick={()=>navigate(`/stores/${product?.store?.id}`)}>Visit the Store</button>
+            </div>
         </div>
-        <div>
-            <h2>{product?.price && currency.format(product.price).replace("$", "$ ")}</h2>
-            {! product.cart && <button onClick={addToCart}>Add To Cart</button>}
-            <button>Buy Now</button>
-            <button onClick={favorite}>{product?.favorite ? "Unfavorite" : "Favorite"}</button>
-            <span />
-            <b>{product.store?.name}</b>
-            <button>Visit the Store</button>
-        </div>
-    </div>
     }
     </Placeholder>
     </>

@@ -62,7 +62,7 @@ export const Cart = () => {
                                 <span> x {currency.format(m.price).replace("$", "$ ")}</span>
                             </div>
                             <span className="total">{currency.format(m.quantity * m.price).replace("$", "$ ")}</span>
-                            <Link className="store" to="/{m.store}">VISIT STORE</Link>
+                            <Link className="store" to={`/stores/${m.storeId}`}>VISIT STORE</Link>
                             <Link className="remove" to="/cart" data-id={m.id} onClick={removeItem}>
                                 <span>REMOVE</span>
                                 <i className="fa-solid fa-trash"></i>

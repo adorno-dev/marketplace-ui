@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { ForgotPasswordRequest } from "../contracts/requests/forgot-password-request";
 import { SignInRequest } from "../contracts/requests/signin-request";
 import { SignUpRequest } from "../contracts/requests/signup-request";
@@ -39,15 +40,12 @@ export const AuthenticationProvider = ({children}: {children: ReactNode}) => {
     }
     const isAuthenticated = () => token !== ""
     useEffect(() => {
-        const storedToken = localStorage.getItem("t")
-        if (storedToken)
-            setToken(storedToken)
-        else signOut()
+        setToken(localStorage.getItem("t") ?? "")
     }, [token])
 
     return (
         <AuthenticationContext.Provider value={{token, signIn, signUp, signOut, forgotPassword, isAuthenticated}}>
-            {children}
+            <>{children}</>
         </AuthenticationContext.Provider>
     )
 }
