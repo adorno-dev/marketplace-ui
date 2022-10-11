@@ -47,7 +47,7 @@ export const Favorites = () => {
                                     <i className="fa-sharp fa-solid fa-star"></i>
                                 </div>
                                 <span className="price">{currency.format(f.price).replace("$", "$ ")}</span>
-                                <Link className="store" to={`/store/${f.storeId}`}>VISIT STORE</Link>
+                                <Link className="store" to={`/stores/${f.storeId}`}>VISIT STORE</Link>
                                 <Link className="remove" to="/favorites" data-id={f.id} onClick={unfavorite}>
                                     <span>REMOVE</span>
                                     <i className="fa-solid fa-trash"></i>

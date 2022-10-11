@@ -1,5 +1,4 @@
 div.view-store {
-    // max-width: 880px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -12,5 +11,24 @@ div.view-store {
         align-items: center;
         gap: 15px;
         min-width: 400px;
+
+        > div {
+            display: flex;
+            width: 250px;
+
+            > img:first-child {
+                height: 55px;
+                width: 55px;
+                margin-right: 10px;
+            }
+        }
+
+        > ul {
+            width: 700px;
+        }
+    }
+
+    .hflex:last-child > div {
+        align-self: flex-start;
     }
 }

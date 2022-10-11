@@ -1,3 +1,4 @@
+import { Product } from "./product"
 import { User } from "./user"
 
 export type Store = {
@@ -10,5 +11,6 @@ export type Store = {
     logo: string,
     banner: string,
     categories?: string[],
-    user: User
+    user: User,
+    products?: Product[]
 }

@@ -81,7 +81,10 @@ export const Cart = () => {
                         }
                     </div>
                 </div>
-                <Pagination pageIndex={cart?.pageIndex} pageCount={cart?.pageCount} paginate={fetchData} />
+                {
+                    cart?.items?.length !== undefined && cart.items.length > 0 && 
+                    <Pagination pageIndex={cart?.pageIndex} pageCount={cart?.pageCount} paginate={fetchData} />
+                }
                 <div >
                     {cart?.items && <button onClick={checkout}>Check out</button>}
                 </div>

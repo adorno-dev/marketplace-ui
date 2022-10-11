@@ -31,7 +31,7 @@ export const Main = () => {
                             <img src={p.screenshoot} />
                         </Link>
                         <Link className="product" to={`/products/${p.id}`}>{p.name}</Link>
-                        <Link className="store" to="/store">{p.store.name}</Link>
+                        <Link className="store" to={`/stores/${p.store.id}`}>{p.store.name}</Link>
                         <div className="split">
                             <span className="reviews">
                                 <i className="fa-sharp fa-solid fa-star"></i>
