@@ -64,11 +64,7 @@ div.select {
         border-bottom: none;
         i { transform: rotate(0); }
     }
-
-    // &.active i {
-    //     transform: rotate(0);
-    // }
-
+    
     &:not(.active) ul {
         display: none;
     }

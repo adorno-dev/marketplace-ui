@@ -10,18 +10,6 @@ export const Store = () => {
     const [store, setStore] = useState<Models.Store | null>()
     const fetchData = useCallback(()=>{
         storeService.getUserStore()
-                    // .then(res => setStore(res.data.map((m: Models.Store) => { 
-                    //     return { 
-                    //         id: m.id, 
-                    //         name: m.name, 
-                    //         profile: m.profile, 
-                    //         politics: m.politics,
-                    //         url: m.url,
-                    //         logo: m.logo,
-                    //         banner: m.banner,
-                    //         categories: m.categories 
-                    //     } 
-                    // })))
                     .then(res => setStore(res.data))
     }, [])
     const deleteUserStore = async () => {
