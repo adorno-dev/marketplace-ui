@@ -1,8 +1,15 @@
 section.store {
-    div {
-        margin: 10px 0;
-        a {
-            margin: 0 10px 0 0;
-        }
+    margin: 0 auto;
+    width: 880px;
+
+    h,
+    p {
+        padding: 7px 15px 5px 0;
+    }
+
+    a {
+        line-height: 40px;
+        margin: 30px 15px 30px 0;
+        
     }
 }

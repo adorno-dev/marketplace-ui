@@ -12,7 +12,7 @@ div.view-store {
         gap: 15px;
         min-width: 400px;
 
-        > div {
+        > div:first-child {
             display: flex;
             width: 250px;
 
@@ -30,5 +30,10 @@ div.view-store {
 
     .hflex:last-child > div {
         align-self: flex-start;
+    }
+
+    .options * {
+        display: block !important;
+        padding: 0 0 10px 0;
     }
 }
