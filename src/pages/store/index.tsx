@@ -73,8 +73,9 @@ export const Store = () => {
             <div className="hflex options">
                 <div>
                     <h3>Options</h3>
-                    <Link to="/admin/products">New Product</Link>
-                    <Link to="/">Go to Marketplace</Link>
+                    <Link to="/admin/products">Products</Link>
+                    <Link to="/store">Orders</Link>
+                    <Link to="/">Marketplace</Link>
                     {/* <Link to="/store" onClick={deleteUserStore}>Delete this store</Link> */}
                 </div>
                 <ul className="products">
