@@ -12,5 +12,10 @@ export type Store = {
     banner: string,
     categories?: string[],
     user: User,
-    products?: Product[]
+    items?: Product[],
+
+    totalItems?: number,
+    pageIndex?: number,
+    pageCount?: number,
+    pageSize?: number
 }

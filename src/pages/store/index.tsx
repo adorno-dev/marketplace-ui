@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { Authorized, Navbar, Placeholder } from "../../components"
+import { Authorized, Navbar, Pagination, Placeholder } from "../../components"
+import { StoreInfo } from "../../components/store-info"
 import * as Models from "../../models/store"
 import { storeService } from "../../services"
 
@@ -27,60 +28,34 @@ export const Store = () => {
     return <>
     <Authorized>
     <Navbar />
-    <Placeholder>
-    {/* {
+    <Placeholder>   
+    {
         ! store ?
         <section className="store">
-            <h2>Store Section</h2>
-            <p>You don't have a store yet.</p>
-            <div>
-                <Link to="/store/new">Create my store</Link>
-            </div>
-        </section> :
-        <section className="store">
-            <h2>{store.name}</h2>
-            <Link to={`/stores/${store.id}`}>Visit the store</Link>
-            <p>Sold by {store.user.username}</p>
-            <div>
-                <img src={store.logo} />
-                <img src={store.banner} />
-            </div>
-            <Link to="/store" onClick={deleteUserStore}>Delete this store</Link>
+            <h2>You don't have a store yet.</h2>
+            <p>Would you like to create one?.</p>
+            <Link to="/store/new">[ Yes, please ]</Link>
+            <Link to="/">[ Not interessed ]</Link>
         </section>
-    } */}
-    
-        {
-            ! store ?
-            <section className="store">
-                <h2>You don't have a store yet.</h2>
-                <p>Would you like to create one?.</p>
-                <Link to="/store/new">[ Yes, please ]</Link>
-                <Link to="/">[ Not interessed ]</Link>
-            </section>
-            :
-            <div className="view-store">
-            <div className="hflex">
-                <div>
-                    <img src={store?.logo} />
-                    <div>
-                        <b>{store?.name}</b>
-                        <p>Sold by: {store?.user.username}</p>
-                        <p>Joined: {toDatetime(store?.joined)}</p>
-                    </div>
-                </div>
-                <img src={store?.banner} />
-            </div>       
-            <div className="hflex options">
-                <div>
-                    <h3>Options</h3>
-                    <Link to="/admin/products">Products</Link>
-                    <Link to="/store">Orders</Link>
-                    <Link to="/">Marketplace</Link>
-                    {/* <Link to="/store" onClick={deleteUserStore}>Delete this store</Link> */}
-                </div>
+        :
+        <>
+        
+        <StoreInfo store={store} />
+
+        <div className="viewer">
+
+            <div className="options">
+                <h3>Options</h3>
+                <Link to={`/admin/products/${store.id}`}>Products</Link>
+                <Link to="/store">Orders</Link>
+                <Link to="/">Marketplace</Link>
+            </div>
+
+            <div>
+                <Pagination pageIndex={store?.pageIndex} pageCount={store?.pageCount} pageSize={store?.pageSize} paginate={fetchData} />
                 <ul className="products">
                 {
-                    store?.products?.map(p => 
+                    store?.items?.map(p => 
                         <li key={p.id}>
                             <Link to={`/products/${p.id}`}>
                                 <img src={p.screenshoot} />
@@ -101,10 +76,12 @@ export const Store = () => {
                     )
                 }
                 </ul>
-                </div>
             </div>
-        }
 
+        </div>
+
+        </>
+    }
     </Placeholder>
     </Authorized>
     </>

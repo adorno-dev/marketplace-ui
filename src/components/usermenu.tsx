@@ -1,8 +1,7 @@
 import { RefObject, useContext, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 import { AuthenticationContext } from '../contexts/authentication-context'
-
-import './usermenu.scss'
 
 export const Usermenu = ({sender}:{sender?:RefObject<HTMLAnchorElement>}) => {
     const context = useContext(AuthenticationContext)
@@ -37,7 +36,7 @@ export const Usermenu = ({sender}:{sender?:RefObject<HTMLAnchorElement>}) => {
     return <>
     {
         visible &&
-        <div id="usermenu" ref={usermenu}>
+        <UserMenuStyle ref={usermenu}>
             <div>
                 <h3>Developer</h3>
                 <p>developer@marketplace.com</p>
@@ -45,12 +44,36 @@ export const Usermenu = ({sender}:{sender?:RefObject<HTMLAnchorElement>}) => {
             <div>
                 <ul>
                     <li><Link to="/account">My account</Link></li>
-                    <li><Link to="/favorites">My favorites</Link></li>
                     <li><Link to="/store">My store</Link></li>
                     <li><Link to="/signout" onClick={signOut}>Sign Out</Link></li>
                 </ul>
             </div>
-        </div>
+        </UserMenuStyle>
     }
     </>
 }
+
+export const UserMenuStyle = styled.div`
+    display: block;
+    position: fixed;
+    top: 56px;
+    right: 10px;
+    background: #181a1b;
+    border: 1px solid #424242;
+    border-top: none;
+    z-index: 1;
+
+    div {
+        padding: 10px 30px;
+    }
+
+    div:first-child {
+        border-bottom: 1px solid #424242;
+    }
+    ul {
+        list-style: none;
+        li {
+            padding: 2px 0;
+        }
+    }
+`

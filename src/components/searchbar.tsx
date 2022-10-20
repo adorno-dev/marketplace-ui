@@ -1,6 +1,5 @@
 import { RefObject, useEffect, useRef, useState } from 'react'
-
-import './searchbar.scss'
+import styled from 'styled-components'
 
 export const Searchbar = ({sender}:{sender?:RefObject<HTMLAnchorElement>}) => {
     const [visible, setVisible] = useState<boolean>(false)
@@ -40,7 +39,7 @@ export const Searchbar = ({sender}:{sender?:RefObject<HTMLAnchorElement>}) => {
         toggleVisible()
     }, [visible])
     return (
-        <form id="searchbar" ref={formRef} className={visible ? "active": ""}>
+        <SearchBarStyle ref={formRef} className={visible ? "active": ""}>
             <input type="text" ref={textRef} value={text} onChange={textHandler} />
             {
                 text.length > 0 &&
@@ -51,6 +50,22 @@ export const Searchbar = ({sender}:{sender?:RefObject<HTMLAnchorElement>}) => {
             <button id="confirmSearch" onClick={searchHandler}>
                 <i className="fa-solid fa-magnifying-glass"></i>
             </button>
-        </form>    
+        </SearchBarStyle>    
     )
 }
+
+export const SearchBarStyle = styled.form`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    button {
+        background: transparent;
+        color: #686767;
+        border: 1px solid #424242;
+        border-left: 0;
+        font-size: 1.1em;
+        padding: 0 12px;
+        cursor: pointer;
+    }
+`

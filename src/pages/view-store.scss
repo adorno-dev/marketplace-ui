@@ -1,39 +1,20 @@
-div.view-store {
-    margin: 0 auto;
+div.store-info {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    .hflex {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-        min-width: 400px;
-
-        > div:first-child {
-            display: flex;
-            width: 250px;
-
-            > img:first-child {
-                height: 55px;
-                width: 55px;
-                margin-right: 10px;
-            }
-        }
-
-        > ul {
-            width: 700px;
-        }
+    align-items: center;
+    div {
+        display: inline-block;
+        min-width: 200px;
+        vertical-align: middle;
+    }
+    .logo {
+        vertical-align: middle;
+        margin: 0 10px 0 0;
     }
 
-    .hflex:last-child > div {
-        align-self: flex-start;
-    }
-
-    .options * {
-        display: block !important;
-        padding: 0 0 10px 0;
+    @media only screen and (max-width: 942px)
+    {
+        .banner {
+            display: none;
+        }
     }
 }

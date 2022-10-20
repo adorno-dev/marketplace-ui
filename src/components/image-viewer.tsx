@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react'
+import styled from 'styled-components'
 import './image-viewer.scss'
 
 type Props = {
@@ -74,3 +75,49 @@ export const ImageViewer = (props: Props) => {
     </section>
     </>
 }
+
+export const ImageViewerStyle = styled.section`
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    margin: 0 auto;
+
+    @media only screen and (max-width: 630px) {
+        width: 94%;    
+    }
+
+    height: 345px;
+    width: 600px;
+
+    i[class^="fa-"] {
+        position: absolute;
+        background: #737373;
+        padding: 2px 4px;
+        border-radius: 20px;
+        right: -8px;
+        top: -8px;
+        cursor: pointer;
+    }
+    
+    > img {
+        object-fit: cover;
+        height: 100%;
+    }
+
+    > div {
+        background: #181a1b;
+
+        img {
+            object-fit: cover;
+            width: 40px;
+            height: 40px;
+            margin: 5px 5px 0 0;
+            cursor: pointer;
+        }
+    }
+
+    > &.active {
+        display: flex;
+    }
+`

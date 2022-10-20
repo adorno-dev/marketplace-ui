@@ -1,15 +1,14 @@
-section.store {
-    margin: 0 auto;
-    width: 880px;
+div.viewer {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+}
 
-    h,
-    p {
-        padding: 7px 15px 5px 0;
-    }
-
+div.options {
+    display: flex;
+    flex-direction: column;
+    // max-width: 220px;
+    width: 280px;
     a {
-        line-height: 40px;
-        margin: 30px 15px 30px 0;
-        
+        margin: 5px 0;
     }
 }

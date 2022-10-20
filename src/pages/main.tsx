@@ -10,12 +10,12 @@ import './main.scss'
 export const Main = () => {
     const currency = Intl.NumberFormat("en-US", {style: "currency", currency: "USD"});
     const [products, setProducts] = useState<Paginated<ProductResponse>>()
-    const fetchData = useCallback(()=>{
-        productService.getProducts({pageIndex: 1, pageSize: 30})
+    const fetchData = useCallback((pageIndex?: number, pageSize?: number)=>{
+        productService.getProducts({pageIndex, pageSize})
                       .then(res => setProducts(res.data))
     }, [])
     useEffect(() => {
-        fetchData()
+        fetchData(1)
     }, [fetchData])
     return <>
     <Navbar />
@@ -23,6 +23,9 @@ export const Main = () => {
         <h2>Welcome to Marketplace</h2>
         <p>Please don't read this document until we finished this project. 
             So you could've better experience.</p>
+
+        <Pagination pageIndex={products?.pageIndex} pageCount={products?.pageCount} pageSize={products?.pageSize} paginate={fetchData} />
+        
         <ul className="products">
             {
                 products?.items.map(p => 
@@ -47,7 +50,7 @@ export const Main = () => {
                 )
             }
         </ul>
-        <Pagination pageIndex={products?.pageIndex} pageCount={products?.pageCount} paginate={fetchData} />
+        
     </Placeholder>
     </>
 }

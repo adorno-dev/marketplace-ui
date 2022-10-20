@@ -8,6 +8,7 @@ type Props = {
 
 const getProducts = async (props?: Props) => {
     const paginated = props?.pageIndex ? `pages/${props.pageIndex}${props.pageIndex && props.pageSize ? `/${props.pageSize}` : ""}`:""
+    console.log(paginated)
     return await apiService.api.get(`products/${paginated}`)
         .then(res => res as ApiResponse)
         .catch(err => err.response as ApiResponse)

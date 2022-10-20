@@ -1,11 +1,14 @@
 import { ReactNode } from "react"
-
-import './placeholder.scss'
+import styled from "styled-components"
 
 export const Placeholder = ({children}:{children:ReactNode}) => {
     return (
-        <section id="placeholder">
+        <PlaceholderStyle>
             {children}
-        </section>
+        </PlaceholderStyle>
     )
 }
+
+export const PlaceholderStyle = styled.section`
+    padding: 15px 20px;
+`
