@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
+import styled from "styled-components"
 import { Authorized, Navbar, Placeholder } from "../../../components"
 import { Product } from "../../../models"
 import { productService } from "../../../services/product-service"
-
-import './delete.scss'
 
 export const DeleteProduct = () => {
     const navigate = useNavigate()
@@ -24,7 +23,7 @@ export const DeleteProduct = () => {
     <Authorized>
     <Navbar />
     <Placeholder>
-        <div id="delete-product">
+        <DeleteProductStyle>
             <h2>Delete Product</h2>
             <p>Are you sure want delete the product below?</p>
             <div>
@@ -41,8 +40,39 @@ export const DeleteProduct = () => {
                 <Link to="/admin/products">Back to Products</Link>
                 <button onClick={deleteProduct}>Confirm</button>
             </span>
-        </div>
+        </DeleteProductStyle>
     </Placeholder>
     </Authorized>
     </>
 }
+
+export const DeleteProductStyle = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+    min-width: 360px;
+    white-space: pre-wrap;
+
+    div {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        margin: 25px 0;
+        min-width: 360px;
+        max-width: 880px;
+
+        > :nth-child(odd) {
+            text-align: right;
+            margin-right: 10px;
+            color: gray;
+            font-weight: bold;
+        }
+    }
+
+    > span {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-width: 360px;
+    }
+`

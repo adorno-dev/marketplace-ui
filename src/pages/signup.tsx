@@ -1,9 +1,8 @@
 import { FormEvent, useContext, useState } from "react"
 import { Link, Navigate } from "react-router-dom"
+import styled from "styled-components"
 import { Navbar, Placeholder } from "../components"
 import { AuthenticationContext } from "../contexts/authentication-context"
-
-import './signup.scss'
 
 export const SignUp = () => {
     const context = useContext(AuthenticationContext)
@@ -19,7 +18,7 @@ export const SignUp = () => {
     return ! success ? <>
         <Navbar />
         <Placeholder>
-            <form id="signup" onSubmit={submitHandler}>
+            <SignUpStyle onSubmit={submitHandler}>
                 <h2>Sign Up</h2>
                 <p>Please fill all required fields to complete your account.</p>
                 <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
@@ -30,8 +29,26 @@ export const SignUp = () => {
                     <p>Already have an account? <Link to="/signin">Sign In</Link> </p>
                     <button type="submit">Confirm</button>
                 </div>
-            </form>
+            </SignUpStyle>
         </Placeholder>
     </>
     : <Navigate to="/signin" />
 }
+
+export const SignUpStyle = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    max-width: 450px;
+    margin: 0 auto;
+
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 35px;
+        width: 100%;
+    }
+`

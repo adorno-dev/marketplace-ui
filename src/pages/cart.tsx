@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 import { Authorized, Navbar, Pagination, Placeholder } from '../components'
 import * as C from '../models/cart'
 import { cartService } from '../services/cart-service'
-
-import './cart.scss'
 
 export const Cart = () => {
     const currency = Intl.NumberFormat("en-US", {style: "currency", currency: "USD"});
@@ -41,7 +40,7 @@ export const Cart = () => {
     <Authorized>
     <Navbar />
         <Placeholder>
-            <section className="cart">
+            <CartStyle>
                 <h2>My Cart</h2>
                 {
                     cart?.items && cart.items.length  > 0 ?
@@ -88,8 +87,98 @@ export const Cart = () => {
                 <div >
                     {cart?.items && <button onClick={checkout}>Check out</button>}
                 </div>
-            </section>
+            </CartStyle>
         </Placeholder>
     </Authorized>
     </>
 }
+
+export const CartStyle = styled.section`
+    ul {
+        list-style: none;
+        align-items: center;
+        margin: 10px 0;
+
+        li {
+            display: grid;            
+            column-gap: 8px;     
+            grid-template-columns: 100px 170px;       
+            grid-template-areas: 
+                "image description description"
+                "image price total"
+                "image store remove";
+            
+            border-bottom: 1px solid #424242;
+            padding: 5px 0;
+
+            .image {
+                grid-area: image;
+                justify-self: left;
+
+                object-fit: cover;
+                width: 100px;
+                height: 75px;
+            }
+
+            .description {
+                grid-area: description;
+                font-weight: bold;
+
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .price {
+                grid-area: price;
+                align-self: center;
+                font-size: .9em;
+            
+                input {
+                    font-size: .95em;
+                    padding: 5px 5px 5px 10px;
+                    height: unset;
+                    width: 65px;
+                }
+            }
+
+            .total {
+                grid-area: total;
+                align-self: center;
+                text-align: right;
+                font-weight: bold;
+            }
+
+            .store {
+                font-size: .85em;
+                font-weight: bold;
+                align-self: center;
+            }
+
+            .remove {
+                grid-area: remove;
+                justify-self: right;
+                align-self: center;
+                span {
+                    font-size: .9em;
+                    font-weight: bold;
+                    margin-right:  5px;
+                }
+            }
+        }
+    }
+
+    > .total {
+        font-size: .85em;
+        :last-child {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    }
+
+    > div {
+        text-align: right;
+        align-items: center;
+        margin: 10px 0;
+    }
+`

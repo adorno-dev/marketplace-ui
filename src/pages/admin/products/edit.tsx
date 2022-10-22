@@ -1,11 +1,10 @@
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import styled from 'styled-components'
 import { Authorized, ImageBrowser, ImageViewer, Navbar, Placeholder, Select, SelectItem } from '../../../components'
 import { Product } from '../../../models'
 import { Category } from '../../../models/category'
 import { categoryService, productService } from '../../../services'
-
-import './edit.scss'
 
 export const EditProduct = () => {
     const form = useRef<HTMLFormElement>(null)
@@ -37,7 +36,7 @@ export const EditProduct = () => {
     <Authorized>
     <Navbar />
     <Placeholder>
-        <form ref={form} id="edit-product" onSubmit={submitHandler}>
+        <EditProductStyle ref={form} onSubmit={submitHandler}>
             <h2>Edit Product</h2>
             <p>Complete all required fields to update this product.</p>
 
@@ -56,8 +55,37 @@ export const EditProduct = () => {
                 <Link to="/admin/products">Back to Products</Link>
                 <button type="submit">Confirm</button>
             </div>
-        </form>
+        </EditProductStyle>
     </Placeholder>
     </Authorized>
     </>
 }
+
+export const EditProductStyle = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    max-width: 450px;
+    margin: 0 auto;
+
+    > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 35px;
+        width: 100%;
+
+        & input:first-child {
+            margin-right: 5px;
+        }
+        & input:last-child {
+            margin-left: 5px;
+        }
+    }
+
+    > div:last-child {
+        justify-content: space-between;
+    }
+`

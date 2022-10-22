@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
+import styled from "styled-components"
 import { Authorized, Navbar, Placeholder } from "../../../components"
 import { Category } from "../../../models/category"
 import { categoryService } from "../../../services/category-service"
-
-import './delete.scss'
 
 export const DeleteCategory = () => {
     const navigate = useNavigate()
@@ -24,7 +23,7 @@ export const DeleteCategory = () => {
     <Authorized>
     <Navbar />
     <Placeholder>
-        <div id="delete-category">
+        <DeleteCategoryStyle>
             <h2>Delete Category</h2>
             <p>Are you sure want delete the category below?</p>
             <div>
@@ -32,7 +31,7 @@ export const DeleteCategory = () => {
                     category?.parentId &&
                     <>
                     <span>Parent</span>
-                    <span>{category?.parent?.name}</span>
+                    <span>{category?.parentName}</span>
                     </>                    
                 }
                 <span>Name</span>
@@ -42,8 +41,38 @@ export const DeleteCategory = () => {
                 <Link to="/admin/categories">Back to Categories</Link>
                 <button onClick={deleteCategory}>Confirm</button>
             </span>
-        </div>
+        </DeleteCategoryStyle>
     </Placeholder>
     </Authorized>
     </>
 }
+
+export const DeleteCategoryStyle = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+    min-width: 360px;
+
+    div {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        margin: 25px 0;
+        min-width: 360px;
+        max-width: 880px;
+
+        > :nth-child(odd) {
+            text-align: right;
+            margin-right: 10px;
+            color: gray;
+            font-weight: bold;
+        }
+    }
+
+    > span {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-width: 360px;
+    }
+`

@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import styled from "styled-components"
 import { Navbar, Placeholder } from "../components"
 import { Product } from "../models"
 import { cartService, productService } from "../services"
-
-import './view-product.scss'
 
 export const ViewProduct = () => {
     const currency = Intl.NumberFormat("en-US", {style: "currency", currency: "USD"});
@@ -44,7 +43,7 @@ export const ViewProduct = () => {
     <Navbar />
     <Placeholder>
     {
-        <div className="view-product">
+        <ViewProductStyle>
             <div>
                 <h2 ref={title}>{product?.name}</h2>
                 <img ref={image} src={product?.screenshoots?.at(0) ?? ""} />
@@ -64,8 +63,68 @@ export const ViewProduct = () => {
                 <b>{product?.store?.name}</b>
                 <button onClick={()=>navigate(`/stores/${product?.store?.id}`)}>Visit the Store</button>
             </div>
-        </div>
+        </ViewProductStyle>
     }
     </Placeholder>
     </>
 }
+
+export const ViewProductStyle = styled.div`
+    display: flex;
+
+    @media only screen and (max-width: 880px) {
+        flex-direction: column;
+        div:last-child {
+            margin: 10px 0 0;
+            max-width: unset !important;
+            button {
+                max-width: 415px;
+            }
+        }
+    }
+
+    margin: 0 auto;
+    max-width: 880px;
+    justify-content: space-between;
+    gap: 0 10px;
+    padding: 10px 0;
+
+    div:first-child {
+        display: flex;
+        flex-direction: column;
+        gap: 8px 0;
+        width: 100%;
+        white-space: pre-wrap;
+        > img {
+            object-fit: cover;
+            max-width: 625px;
+            max-height: 400px;
+            height: 400px;
+            width: 625px;
+        }
+
+        div {
+            img {
+                object-fit: cover;
+                width: 48px;
+                height: 48px;
+                margin-right: 10px;
+                cursor: pointer;
+            }    
+        }
+    }
+
+    div:last-child {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 8px 0;
+        text-align: right;
+        min-width: 250px;
+        max-width: 250px;
+        a,
+        button {
+            width: 100%;
+        }
+    }
+`

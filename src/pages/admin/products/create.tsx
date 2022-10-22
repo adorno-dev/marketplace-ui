@@ -1,10 +1,9 @@
 import { FormEvent, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 import { Authorized, ImageBrowser, ImageViewer, Navbar, Placeholder, Select, SelectItem } from '../../../components'
 import { Category } from '../../../models/category'
 import { categoryService, productService } from '../../../services'
-
-import './create.scss'
 
 export const CreateProduct = () => {
     const form = useRef<HTMLFormElement>(null)
@@ -27,7 +26,7 @@ export const CreateProduct = () => {
     <Authorized>
     <Navbar />
     <Placeholder>
-        <form ref={form} method="POST" id="create-product" onSubmit={submitHandler}>
+        <CreateProductStyle ref={form} method="POST" onSubmit={submitHandler}>
             <h2>Create Product</h2>
             <p>Complete all required fields to create a product.</p>
             <Select items={categories} name="categoryId" text="Empty Category" value="0" />
@@ -43,8 +42,37 @@ export const CreateProduct = () => {
                 <Link to="/admin/products">Back to Products</Link>
                 <button type="submit">Confirm</button>
             </div>
-        </form>
+        </CreateProductStyle>
     </Placeholder>
     </Authorized>
     </>
 }
+
+export const CreateProductStyle = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    max-width: 450px;
+    margin: 0 auto;
+
+    > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 35px;
+        width: 100%;
+
+        & input:first-child {
+            margin-right: 5px;
+        }
+        & input:last-child {
+            margin-left: 5px;
+        }
+    }
+
+    > div:last-child {
+        justify-content: space-between;
+    }
+`

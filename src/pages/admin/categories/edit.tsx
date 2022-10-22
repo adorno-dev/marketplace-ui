@@ -1,11 +1,10 @@
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
+import styled from "styled-components"
 import { Authorized, Navbar, Placeholder } from "../../../components"
 import { Select, SelectItem } from "../../../components/select"
 import { Category } from "../../../models/category"
 import { categoryService } from "../../../services/category-service"
-
-import './edit.scss'
 
 export const EditCategory = () => {
     const form = useRef<HTMLFormElement>(null)
@@ -34,7 +33,7 @@ export const EditCategory = () => {
     <Authorized>
     <Navbar />
     <Placeholder>
-        <form ref={form} id="edit-category" onSubmit={submitHandler}>
+        <EditCategoryStyle ref={form} onSubmit={submitHandler}>
             <h2>Edit Category</h2>
             <p>Complete all required fields to update this category.</p>
             <Select items={categories} name="parentId" text="Empty Category" value={`${category?.parentId}`} />
@@ -44,8 +43,30 @@ export const EditCategory = () => {
                 <Link to="/admin/categories">Back to Categories</Link>
                 <button type="submit">Confirm</button>
             </div>
-        </form>
+        </EditCategoryStyle>
     </Placeholder>
     </Authorized>
     </>
 }
+
+export const EditCategoryStyle = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    max-width: 450px;
+    margin: 0 auto;
+
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 35px;
+        width: 100%;
+    }
+
+    > div:last-child {
+        justify-content: space-between;
+    }
+`

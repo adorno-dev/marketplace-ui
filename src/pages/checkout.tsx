@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 import { Authorized, Navbar, Placeholder } from '../components'
 import { CartResponse } from '../contracts/responses/cart-response'
 import { cartService } from '../services/cart-service'
-
-import './checkout.scss'
 
 export const Checkout = () => {
     const currency = Intl.NumberFormat("en-US", {style: "currency", currency: "USD"});
@@ -22,7 +21,7 @@ export const Checkout = () => {
     <Authorized>
     <Navbar />
     <Placeholder>
-        <section className="checkout">
+        <CheckoutStyle>
             <div>
                 <h2>Check out</h2>
                 <p>Confirm your billing information to complete the check out.</p>
@@ -33,7 +32,7 @@ export const Checkout = () => {
                             <div>{m.description}</div>
                             <div>
                                 <span>(Qty x Unit): {m.quantity} x {currency.format(m.price).replace("$", "$ ")}</span>
-                                <b>{currency.format(m.price).replace("$", "$ ")}</b>
+                                <b>{currency.format(m.price * m.quantity).replace("$", "$ ")}</b>
                             </div>
                         </li>
                     )
@@ -69,8 +68,80 @@ export const Checkout = () => {
                 </form>
             </div>
             
-        </section>
+        </CheckoutStyle>
     </Placeholder>
     </Authorized>
     </>
 }
+
+export const CheckoutStyle = styled.section`
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+
+    @media only screen and (min-width: 900px) {
+        flex-direction: row;
+        justify-content: space-between;
+        > div {
+            width: calc(50% - 20px);
+        }
+    }
+
+    > div:first-child {
+        ul {
+            list-style: none;
+            margin: 10px 0;
+            font-size: .95em;
+    
+            display: flex;
+            flex-direction: column;
+    
+            li {
+                margin: 5px 0;
+                > div:first-child {
+                    font-weight: bold;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                > div:last-child {
+                    display: flex;
+                    font-size: .95em;
+                    font-style: italic;
+                    justify-content: space-between;
+                    border-bottom: 1px solid #424242;
+                    padding: 5px 0;
+                }
+            }
+        }
+        > .total {
+            font-size: .85em;
+            :last-child {
+                font-weight: bold;
+                font-size: 1em;
+            }
+        }
+    
+        > div {
+            text-align: right;
+            align-items: center;
+            margin: 10px 0 0;
+        }
+    }
+
+    > div:last-child {
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 10px 0;
+
+            > div {
+                display: flex;
+                gap: inherit;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+    }
+`
