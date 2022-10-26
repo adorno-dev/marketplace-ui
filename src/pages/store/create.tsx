@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { Authorized, ImageBrowser, ImageViewer, Navbar, Placeholder } from "../../components"
 import { storeService } from "../../services/store-service"
 
-export const NewStore = () => {
+export const CreateStore = () => {
     const form = useRef<HTMLFormElement>(null)
     const navigate = useNavigate()
     const submitHandler = async (e: FormEvent) => {

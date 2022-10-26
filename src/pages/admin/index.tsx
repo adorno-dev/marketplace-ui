@@ -15,7 +15,7 @@ export const Admin = () => {
             <p>This page was made only for development purposes.</p>
             <div>
                 <Link to="/admin/categories">[ Categories ]</Link>
-                <Link to="/admin/products">[ Products ]</Link>
+                {/* <Link to="/admin/products">[ Products ]</Link> */}
             </div>
         </AdminStyle>
     </Placeholder>

@@ -3,16 +3,15 @@ import { Main, SignIn, SignUp, ForgotPassword, Favorites, Cart, Checkout, Store,
 import { CreateCategory } from "./pages/admin/categories/create"
 import { DeleteCategory } from "./pages/admin/categories/delete"
 import { EditCategory } from "./pages/admin/categories/edit"
-import { Products } from "./pages/admin/products"
-import { CreateProduct } from "./pages/admin/products/create"
-import { DeleteProduct } from "./pages/admin/products/delete"
-import { EditProduct } from "./pages/admin/products/edit"
 import { CheckoutCompleted } from "./pages/checkout-completed"
 import { AuthenticationProvider } from "./contexts/authentication-context"
-import { NewStore } from "./pages/store/create"
 import { ViewProduct } from "./pages/view-product"
-import React from "react"
 import { ViewStore } from "./pages/view-store"
+
+import { StoreProducts } from "./pages/store/products"
+import { CreateProduct } from "./pages/store/products/create"
+import { EditProduct } from "./pages/store/products/edit"
+import { DeleteProduct } from "./pages/store/products/delete"
 
 export const AppRoutes = () => {
     return (
@@ -29,8 +28,13 @@ export const AppRoutes = () => {
             <Route path='/cart' element={<Cart />} />
             <Route path='/checkout' element={<Checkout />} />
             <Route path='/checkout-completed' element={<CheckoutCompleted />} />
+
             <Route path='/store' element={<Store />} />
-            <Route path='/store/new' element={<NewStore />} />
+            <Route path='/store/:id/products' element={<StoreProducts />} />
+            <Route path='/store/:id/products/create' element={<CreateProduct />} />
+            <Route path='/store/products/edit/:id' element={<EditProduct />} />
+            <Route path='/store/products/delete/:id' element={<DeleteProduct />} />
+            
             <Route path='/stores/:id' element={<ViewStore />} />
             <Route path='/products/:id' element={<ViewProduct />} />
             
@@ -40,11 +44,11 @@ export const AppRoutes = () => {
             <Route path='/admin/categories/edit/:id' element={<EditCategory />} />
             <Route path='/admin/categories/delete/:id' element={<DeleteCategory />} />
 
-            <Route path='/admin/products' element={<Products />} />
+            {/* <Route path='/admin/products' element={<Products />} />
             <Route path='/admin/products/:id' element={<Products />} />
             <Route path='/admin/products/new' element={<CreateProduct />} />
             <Route path='/admin/products/edit/:id' element={<EditProduct />} />
-            <Route path='/admin/products/delete/:id' element={<DeleteProduct />} />
+            <Route path='/admin/products/delete/:id' element={<DeleteProduct />} /> */}
           </Routes>
         </AuthenticationProvider>
       </BrowserRouter>

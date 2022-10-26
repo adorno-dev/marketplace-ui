@@ -43,7 +43,6 @@ export const Usermenu = ({sender}:{sender?:RefObject<HTMLAnchorElement>}) => {
             </div>
             <div>
                 <ul>
-                    <li><Link to="/account">My account</Link></li>
                     <li><Link to="/store">My store</Link></li>
                     <li><Link to="/signout" onClick={signOut}>Sign Out</Link></li>
                 </ul>

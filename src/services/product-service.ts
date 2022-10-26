@@ -20,6 +20,13 @@ const getProduct = async (id: string) => {
         .catch(err => err.response as ApiResponse)
 }
 
+const getStoreProducts = async ({storeId, props}:{storeId: string | undefined, props?: Props}) => {
+    const paginated = props?.pageIndex ? `pages/${props.pageIndex}${props.pageIndex && props.pageSize ? `/${props.pageSize}` : ""}`:""
+    return storeId && await apiService.api.get(`products/store/${storeId}/${paginated}`)
+        .then(res => res as ApiResponse)
+        .catch(err => err.response as ApiResponse)
+}
+
 const createProduct = async (request: any) => {
     return await apiService.api.postForm("products", request)
         .then(res => res as ApiResponse)
@@ -53,6 +60,7 @@ const unfavorite = async (productId: string) => {
 export const productService = {
     getProducts,
     getProduct,
+    getStoreProducts,
     createProduct,
     updateProduct,
     deleteProduct,

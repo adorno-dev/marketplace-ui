@@ -23,8 +23,8 @@ export const Pagination = (props?: Props) => {
                  Array.from(Array(props?.pageCount).keys()).map(index => 
                 <Link key={index+1} to={`${index+1}`} 
                       className={props?.pageIndex == index+1 ? "active": ""} 
-                      onClick={(e)=>sendPaginate(e, index+1)} >{index+1}</Link>)
-                : <Link to={`${1}`}>1</Link>
+                      onClick={(e)=>sendPaginate(e, index+1)}>{index+1}</Link>)
+                : <Link to={`${1}`} onClick={(e)=>sendPaginate(e, 1)} >1</Link>
             }
             <Link to={`${props?.pageCount !== undefined && props?.pageCount > 0 ? props?.pageCount : props?.pageIndex}`}
                   onClick={(e)=>sendPaginate(e, props?.pageCount ?? 1)}>

@@ -1,10 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import styled from "styled-components"
 import { Navbar, Pagination, Placeholder } from "../components"
 import { ProductList } from "../components/product-list"
 import { Paginated } from "../contracts/responses/paginated-response"
-import { ProductResponse } from "../contracts/responses/product-response"
 import { Product } from "../models"
 import { productService } from "../services/product-service"
 
@@ -24,13 +21,9 @@ export const Main = () => {
     <Navbar />
     <Placeholder>
         <h2>Welcome to Marketplace</h2>
-        <p>Please don't read this document until we finished this project. 
-            So you could've better experience.</p>
-
+        <p>Please don't read this document until we finished this project. So you could've better experience.</p>
         <Pagination pageIndex={products?.pageIndex} pageCount={products?.pageCount} pageSize={products?.pageSize} paginate={fetchData} />
-
         <ProductList products={products?.items} />
-
     </Placeholder>
     </>
 }

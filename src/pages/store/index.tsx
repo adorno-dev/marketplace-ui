@@ -2,28 +2,33 @@ import { useCallback, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { Authorized, Navbar, Pagination, Placeholder } from "../../components"
+import { ProductList } from "../../components/product-list"
 import { StoreInfo } from "../../components/store-info"
 import * as Models from "../../models/store"
-import { storeService } from "../../services"
+import { productService, storeService } from "../../services"
 
 export const Store = () => {
-    const currency = Intl.NumberFormat("en-US", {style: "currency", currency: "USD"});
-    const [store, setStore] = useState<Models.Store | null>()
+    const [store, setStore] = useState<Models.Store | undefined>()
     const navigate = useNavigate()
-    const fetchData = useCallback(()=>{
-        storeService.getUserStore()
-                    .then(res => res && setStore(res.data))
-    }, [])
-    const toDatetime = (timestamp: Date | undefined) => {
-        const date = new Date(timestamp?.toString() ?? "")
-        return date.toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: '2-digit'})
-    }
+    const fetchData = useCallback((pageIndex?: number, pageSize?: number) => {
+        storeService.getUserStore().then(res => res && setStore(res.data))
+        store?.id && productService.getStoreProducts({
+            storeId: store?.id, 
+            props: {pageIndex: pageIndex, pageSize: pageSize}
+        })
+        .then(res => res && setStore(s => { return {...s, 
+            items: res.data.items,
+            pageIndex: res.data.pageIndex,
+            pageCount: res.data.pageCount,
+            pageSize: res.data.pageSize
+        } as Models.Store}))
+    }, [store?.id])
     const deleteUserStore = async () => {
         store?.id && await storeService.deleteUserStore(store.id)
-        setStore(null)
+        setStore(undefined)
     }
     useEffect(()=>{
-        fetchData()
+        fetchData(1)
     }, [fetchData])
     return <>
     <Authorized>
@@ -43,36 +48,14 @@ export const Store = () => {
         <StoreViewer>
             <div className="options">
                 <h3>Options</h3>
-                <Link to={`/admin/products/${store.id}`}>Products</Link>
+                <Link to={`/store/${store.id}/products`}>Products</Link>
                 <Link to="/store">Orders</Link>
                 <Link to="/">Marketplace</Link>
                 <Link to="/store" onClick={deleteUserStore}>Delete Store</Link>
             </div>
             <div>
-                <Pagination pageIndex={store?.pageIndex} pageCount={store?.pageCount} pageSize={store?.pageSize} paginate={fetchData} />
-                <ul className="products">
-                {
-                    store?.items?.map(p => 
-                        <li key={p.id}>
-                            <Link to={`/products/${p.id}`}>
-                                <img src={p.screenshoot} />
-                            </Link>
-                            <Link className="product" to={`/products/${p.id}`}>{p.name}</Link>
-                            <div className="split">
-                                <span className="reviews">
-                                    <i className="fa-sharp fa-solid fa-star"></i>
-                                    <i className="fa-sharp fa-solid fa-star"></i>
-                                    <i className="fa-sharp fa-solid fa-star"></i>
-                                    <i className="fa-sharp fa-solid fa-star"></i>
-                                    <i className="fa-sharp fa-solid fa-star"></i>
-                                    <Link to="reviews">0 Reviews</Link>
-                                </span>
-                                <span className="price">{currency.format(p.price).replace("$", "$ ")}</span>
-                            </div>
-                        </li>
-                    )
-                }
-                </ul>
+                <Pagination pageIndex={store.pageIndex} pageSize={store.pageSize} pageCount={store.pageCount} paginate={fetchData} />
+                <ProductList products={store.items} />
             </div>
         </StoreViewer>
         </>
@@ -89,7 +72,6 @@ export const StoreViewer = styled.section`
     div.options {
         display: flex;
         flex-direction: column;
-        // max-width: 220px;
         width: 280px;
         a {
             margin: 5px 0;
