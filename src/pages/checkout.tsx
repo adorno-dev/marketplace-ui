@@ -1,22 +1,28 @@
-import { useEffect, useState } from 'react'
+import { FormEvent, useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { Authorized, Navbar, Placeholder } from '../components'
 import { CartResponse } from '../contracts/responses/cart-response'
 import { cartService } from '../services/cart-service'
+import { orderService } from '../services/order-service'
 
 export const Checkout = () => {
     const currency = Intl.NumberFormat("en-US", {style: "currency", currency: "USD"});
     const navigate = useNavigate()
     const [cart, setCart] = useState<CartResponse>()
-    const checkout = () => {
-        navigate("/checkout-completed")
+    const fetchData = useCallback(() => {
+        cartService.getCarts()
+                   .then(res => setCart(res.data))        
+    }, [])
+    const checkout = (e: FormEvent) => {
+        e.preventDefault()
+        orderService.placeOrder()
+            .then(res => res && res.status === 200 && navigate("/checkout-completed"))
     }
     useEffect(() => {
-        cartService.getCarts()
-                   .then(res => setCart(res.data))
-    }, [])
+        fetchData()
+    }, [fetchData])
     return <>
     <Authorized>
     <Navbar />
@@ -46,7 +52,7 @@ export const Checkout = () => {
             <div>
                 <h2>Billing information</h2>
                 <p>Confirm your billing information to complete the check out.</p>
-                <form>
+                <form method='POST'>
                     <div>
                         <input type="text" name="firstname" placeholder="First Name" />
                         <input type="text" name="lastname" placeholder="Last Name" />
