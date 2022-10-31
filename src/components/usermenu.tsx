@@ -17,7 +17,7 @@ export const Usermenu = ({sender}:{sender?:RefObject<HTMLAnchorElement>}) => {
         }
     }
     const toggleVisible = () => {
-        sender?.current?.addEventListener("click", (e: any) => {
+        context?.token && sender?.current?.addEventListener("click", (e: any) => {
             window.addEventListener("mousedown", checkVisibility)
             e.stopPropagation()
             e.preventDefault()
@@ -38,8 +38,8 @@ export const Usermenu = ({sender}:{sender?:RefObject<HTMLAnchorElement>}) => {
         visible &&
         <UserMenuStyle ref={usermenu}>
             <div>
-                <h3>Developer</h3>
-                <p>developer@marketplace.com</p>
+                <h3>{context?.username}</h3>
+                <p>{context?.email}</p>
             </div>
             <div>
                 <ul>

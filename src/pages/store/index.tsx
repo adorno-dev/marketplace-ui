@@ -39,7 +39,7 @@ export const Store = () => {
         <StoreUnavailable>
             <h2>You don't have a store yet.</h2>
             <p>Would you like to create one?.</p>
-            <button onClick={()=>navigate("/store/new")}>Yes, Please</button>
+            <button onClick={()=>navigate("/store/create")}>Yes, Please</button>
             <button onClick={()=>navigate("/")}>Not Interessed</button>
         </StoreUnavailable>
         :

@@ -32,8 +32,13 @@ const signUp = async (request: SignUpRequest) => {
     }
 }
 
+const whoami = async () => {
+    return await api.get("authentication/whoami") as ApiResponse
+}
+
 export const AuthenticationService = {
     forgotPassword,
     signIn,
-    signUp
+    signUp,
+    whoami
 }

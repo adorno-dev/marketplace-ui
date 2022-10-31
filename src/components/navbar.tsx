@@ -17,6 +17,9 @@ export const Navbar = () => {
                 <Link to="/admin" id="adminButton">
                     <i className="fa-solid fa-screwdriver-wrench"></i>
                 </Link>
+                <Link to="/store" id="storeButton">
+                    <i className="fa-solid fa-store"></i>
+                </Link>
             </div>
             <div>
                 <Searchbar sender={searchbar} />
