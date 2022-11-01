@@ -29,7 +29,6 @@ export const Cart = () => {
     const checkout = async () => {
         const productId = cart?.items?.map(m => m.productId)
         const quantity = cart?.items?.map(m => m.quantity)
-        
         await cartService.checkout({productId, quantity}) && navigate("/checkout")
     }
 

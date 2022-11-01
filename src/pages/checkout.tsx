@@ -13,7 +13,7 @@ export const Checkout = () => {
     const [cart, setCart] = useState<CartResponse>()
     const fetchData = useCallback(() => {
         cartService.getCarts()
-                   .then(res => setCart(res.data))        
+                   .then(res => setCart(res.data))
     }, [])
     const checkout = (e: FormEvent) => {
         e.preventDefault()
