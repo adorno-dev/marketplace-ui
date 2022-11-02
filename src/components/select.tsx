@@ -18,8 +18,21 @@ export const Select = (props: Props) => {
     const [active, setActive] = useState<boolean>()
     const [text, setText] = useState<string>()
     const [value, setValue] = useState<string>()
+
+    const checkVisibility = (e: any) => {
+        e.stopPropagation()
+        if (!component.current?.contains(e.target)) {
+            window.removeEventListener("mousedown", checkVisibility)
+            component?.current?.classList.remove("active")
+            setActive(false)
+        }
+    }
+
     useEffect(()=>{
         component.current?.addEventListener("click", (e: any) => {
+
+            window.addEventListener("mousedown", checkVisibility)
+
             e.stopPropagation();
             setActive(toggle => ! toggle)
             if (e.target.value !== undefined) {

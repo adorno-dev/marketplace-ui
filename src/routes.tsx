@@ -13,6 +13,7 @@ import { CreateProduct } from "./pages/store/products/create"
 import { EditProduct } from "./pages/store/products/edit"
 import { DeleteProduct } from "./pages/store/products/delete"
 import { CreateStore } from "./pages/store/create"
+import { Orders } from "./pages/store/orders"
 
 export const AppRoutes = () => {
     return (
@@ -36,6 +37,7 @@ export const AppRoutes = () => {
             <Route path='/store/:id/products/create' element={<CreateProduct />} />
             <Route path='/store/products/edit/:id' element={<EditProduct />} />
             <Route path='/store/products/delete/:id' element={<DeleteProduct />} />
+            <Route path='/store/:id/orders' element={<Orders />} />
             
             <Route path='/stores/:id' element={<ViewStore />} />
             <Route path='/products/:id' element={<ViewProduct />} />

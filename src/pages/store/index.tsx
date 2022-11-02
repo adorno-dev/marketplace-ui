@@ -28,7 +28,7 @@ export const Store = () => {
         setStore(undefined)
     }
     useEffect(()=>{
-        fetchData(1)
+        fetchData(1, 12)
     }, [fetchData])
     return <>
     <Authorized>
@@ -49,7 +49,7 @@ export const Store = () => {
             <div className="options">
                 <h3>Options</h3>
                 <Link to={`/store/${store.id}/products`}>Products</Link>
-                <Link to="/store">Orders</Link>
+                <Link to={`/store/${store.id}/orders`}>Orders</Link>
                 <Link to="/">Marketplace</Link>
                 <Link to="/store" onClick={deleteUserStore}>Delete Store</Link>
             </div>

@@ -16,11 +16,11 @@ export const StoreProducts = () => {
     }
     const paginate = (pageIndex: number, pageSize?: number) => {
         productService.getStoreProducts({storeId: id || '', props: {pageIndex}})
-                       .then(res => setProducts(res.data))
+                       .then(res => res && setProducts(res.data))
     }
     const fetchData = useCallback(()=>{
         productService.getStoreProducts({storeId: id || '', props: {pageIndex: 1}})
-                      .then(res => setProducts(res.data))
+                      .then(res => res && setProducts(res.data))
     }, [id])
     useEffect(() => {
         fetchData()
