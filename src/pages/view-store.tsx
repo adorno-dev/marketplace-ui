@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import styled from "styled-components"
 import { Navbar, Pagination, Placeholder } from "../components"
 import { ProductList } from "../components/product-list"
@@ -15,10 +15,10 @@ export const ViewStore = () => {
         id && storeService.getStorePaginated({id, props: {pageIndex}})
                           .then(res => setStore(res.data))
     }, [])
-    const toDatetime = (timestamp: Date | undefined) => {
-        const date = new Date(timestamp?.toString() ?? "")
-        return date.toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: '2-digit'})
-    }
+    // const toDatetime = (timestamp: Date | undefined) => {
+    //     const date = new Date(timestamp?.toString() ?? "")
+    //     return date.toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: '2-digit'})
+    // }
     useEffect(()=>{
         fetchData()
     }, [fetchData])
@@ -28,6 +28,9 @@ export const ViewStore = () => {
         <ViewStoreStyle>
         <StoreInfo store={store} />
         <Pagination pageIndex={store?.pageIndex} pageCount={store?.pageCount} pageSize={store?.pageSize} paginate={fetchData} />
+        <Link to="/">Go to Marketplace</Link>
+        <br />
+        <br />
         <ProductList products={store?.items} />
         </ViewStoreStyle>
     </Placeholder>

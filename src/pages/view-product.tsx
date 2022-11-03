@@ -62,6 +62,8 @@ export const ViewProduct = () => {
                 <button onClick={favorite}>{product?.favorite ? "Unfavorite" : "Favorite"}</button>
                 <b>{product?.store?.name}</b>
                 <button onClick={()=>navigate(`/stores/${product?.store?.id}`)}>Visit the Store</button>
+                <br />
+                <button onClick={()=>navigate("/")}>Go to Marketplace</button>
             </div>
         </ViewProductStyle>
     }
