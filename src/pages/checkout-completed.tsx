@@ -1,13 +1,18 @@
-import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
+import { Navigate, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { Authorized, Navbar, Placeholder } from "../components"
 
 export const CheckoutCompleted = () => {
     const navigate = useNavigate()
+    const orderId = localStorage.getItem("o")
     const marketplace = () => {
         navigate("/")
     }
-    return <>
+    useEffect(() => {
+        localStorage.removeItem("o")
+    }, [])
+    return orderId ? <>
     <Authorized>
     <Navbar />
     <Placeholder>
@@ -15,12 +20,13 @@ export const CheckoutCompleted = () => {
             <h2>Congratulations</h2>
             <p>Thanks for your payment.</p>
             <i className="fa-regular fa-circle-check"></i>
-            <p>Your order number is: <b>#123456</b></p>
+            <p>Your order number is: <b>{orderId?.toUpperCase()}</b></p>
             <button onClick={marketplace}>Return to marketplace</button>
         </CheckoutCompletedStyle>
     </Placeholder>
     </Authorized>
-    </>
+    </> :
+    <Navigate to="/" />
 }
 
 export const CheckoutCompletedStyle = styled.section`
@@ -38,5 +44,6 @@ export const CheckoutCompletedStyle = styled.section`
     button {
         margin: 10px 0;
         width: 320px;
+        margin: 10px auto;
     }
 `

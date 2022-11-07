@@ -18,7 +18,13 @@ export const Checkout = () => {
     const checkout = (e: FormEvent) => {
         e.preventDefault()
         orderService.placeOrder()
-            .then(res => res && res.status === 200 && navigate("/checkout-completed"))
+            // .then(res => res && res.status === 200 && navigate("/checkout-completed"))
+            .then(res => {
+                if (res && res.status === 200) {
+                    localStorage.setItem("o", res.data)
+                    navigate("/checkout-completed")
+                }
+            })
     }
     useEffect(() => {
         fetchData()

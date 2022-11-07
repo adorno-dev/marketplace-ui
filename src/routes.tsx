@@ -47,12 +47,6 @@ export const AppRoutes = () => {
             <Route path='/admin/categories/new' element={<CreateCategory />} />
             <Route path='/admin/categories/edit/:id' element={<EditCategory />} />
             <Route path='/admin/categories/delete/:id' element={<DeleteCategory />} />
-
-            {/* <Route path='/admin/products' element={<Products />} />
-            <Route path='/admin/products/:id' element={<Products />} />
-            <Route path='/admin/products/new' element={<CreateProduct />} />
-            <Route path='/admin/products/edit/:id' element={<EditProduct />} />
-            <Route path='/admin/products/delete/:id' element={<DeleteProduct />} /> */}
           </Routes>
         </AuthenticationProvider>
       </BrowserRouter>
