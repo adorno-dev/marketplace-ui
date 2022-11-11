@@ -37,7 +37,7 @@ export const Store = () => {
     {
         ! store ?
         <StoreUnavailable>
-            <h2>You don't have a store yet.</h2>
+            <h2>There's not store available.</h2>
             <p>Would you like to create one?.</p>
             <button onClick={()=>navigate("/store/create")}>Yes, Please</button>
             <button onClick={()=>navigate("/")}>Not Interessed</button>
@@ -51,7 +51,7 @@ export const Store = () => {
                 <Link to={`/store/${store.id}/products`}>Products</Link>
                 <Link to={`/store/${store.id}/orders`}>Orders</Link>
                 <Link to="/">Marketplace</Link>
-                <Link to="/store" onClick={deleteUserStore}>Delete Store</Link>
+                <Link to={`/store/${store.id}/delete`}>Delete Store</Link>
             </div>
             <div>
                 <Pagination pageIndex={store.pageIndex} pageSize={store.pageSize} pageCount={store.pageCount} paginate={fetchData} />
